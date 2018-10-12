@@ -13,4 +13,6 @@ import javax.servlet.annotation.WebServlet;
 public interface VisitorDao {
     public void insertVisitor(Visitor visitor);
     public Visitor queryVisitorByNameAndPassword(@Param("name")String name, @Param("password")String password);
+    public Visitor queryVisitorByName(String name);
+
 }

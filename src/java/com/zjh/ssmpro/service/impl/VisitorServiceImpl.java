@@ -26,4 +26,9 @@ public class VisitorServiceImpl implements VisitorService{
     public Visitor findVisitorByNameAndPassword(String name, String password) {
         return visitorDao.queryVisitorByNameAndPassword(name,password);
     }
+
+    @Override
+    public Visitor findVisitorByName(String name) {
+        return visitorDao.queryVisitorByName(name);
+    }
 }

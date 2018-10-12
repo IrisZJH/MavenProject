@@ -19,6 +19,16 @@
 		password=#{password}
 	</select>
 
+	<select id="queryVisitorByName"  resultType="Visitor">
+		select
+		id,
+		name,
+		password
+		from
+		visitors
+		where
+		name=#{name}
+	</select>
 </mapper>
 
 

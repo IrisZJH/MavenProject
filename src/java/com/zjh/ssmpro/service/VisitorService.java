@@ -8,4 +8,5 @@ import com.zjh.ssmpro.entity.Visitor;
 public interface VisitorService {
     public void addVisitor(Visitor visitor);
     public Visitor findVisitorByNameAndPassword(String name,String password);
+    public Visitor findVisitorByName(String name);
 }
