@@ -10,8 +10,7 @@
 		select
 		id,
 		name,
-		password,
-		sex,age,school,experience,skill,hobby,advantage,weakness
+		sex,age,school,experience,skill,hobby,advantage,weakness,vid
 		from
 		resums
 		where
@@ -23,6 +22,14 @@
 		from
 		resums
 
+	</select>
+	<select id="queryResumsByType"  resultType="Resums">
+		select
+		*
+		from
+		resums
+		where
+		type=#{type}
 	</select>
 </mapper>
 

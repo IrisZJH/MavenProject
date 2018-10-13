@@ -9,7 +9,8 @@ import java.util.List;
  */
 public interface ResumsService {
     public void addResums(Resums resums);
-    public Resums findResumsByVid(Integer vid);
+    public List<Resums>  findResumsByVid(Integer vid);
     public Resums findResumsByName(String name);
     public List<Resums> queryAllResums();
+    public List<Resums> queryResumsByType(int type);
 }

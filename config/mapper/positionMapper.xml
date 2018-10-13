@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.zjh.ssmpro.dao.PositionDao">
+	<select id="queryAllPosition" resultType="Position">
+		select
+		*
+		from
+		position
+	</select>
+
+	<insert id="insertPosition" parameterType="Position">
+		insert into
+		position(name,department_id,date)
+		values(#{name},#{demartment.id},#{date})
+	</insert>
+	<delete id="deletePositionById" parameterType="int">
+		delete from position where id=#{id}
+	</delete>
+
+	<select id="queryPositionById" resultType="Position">
+		select
+		*
+		from
+		position
+		where
+		position_id = #{id}
+	</select>
+
+	<update id="updatePositionById" parameterType="Position">
+		update position set name=#{name},department_id=#{department.id} where id=#{id}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+		

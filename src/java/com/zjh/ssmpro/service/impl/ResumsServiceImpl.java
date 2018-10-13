@@ -21,7 +21,7 @@ public class ResumsServiceImpl implements ResumsService {
     }
 
     @Override
-    public Resums findResumsByVid(Integer vid) {
+    public List<Resums> findResumsByVid(Integer vid) {
         return resumsDao.queryResumsByVid(vid);
     }
 
@@ -33,5 +33,10 @@ public class ResumsServiceImpl implements ResumsService {
     @Override
     public List<Resums> queryAllResums() {
         return resumsDao.queryAllResums();
+    }
+
+    @Override
+    public List<Resums> queryResumsByType(int type) {
+        return resumsDao.queryResumsByType(type);
     }
 }

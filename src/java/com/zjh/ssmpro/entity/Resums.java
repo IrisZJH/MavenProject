@@ -7,7 +7,7 @@ public class Resums {
     private int id;
     private String name;
     private String sex;
-    private String age;
+    private int age;
     private String school;
     private String experience;
     private String skill;
@@ -15,11 +15,25 @@ public class Resums {
     private String advantage;
     private String weakness;
     private int vid;
+    private int type;
 
     public Resums() {
     }
 
-    public Resums(int id, String name, String sex, String age, String school, String experience, String skill, String hobby, String advantage, String weakness, int vid) {
+    public Resums(String name, String sex, int age, String school, String experience, String skill, String hobby, String advantage, String weakness, int vid) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.school = school;
+        this.experience = experience;
+        this.skill = skill;
+        this.hobby = hobby;
+        this.advantage = advantage;
+        this.weakness = weakness;
+        this.vid = vid;
+    }
+
+    public Resums(int id, String name, String sex, int age, String school, String experience, String skill, String hobby, String advantage, String weakness, int vid) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -57,11 +71,11 @@ public class Resums {
         this.sex = sex;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -119,5 +133,31 @@ public class Resums {
 
     public void setVid(int vid) {
         this.vid = vid;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Resums{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", age=" + age +
+                ", school='" + school + '\'' +
+                ", experience='" + experience + '\'' +
+                ", skill='" + skill + '\'' +
+                ", hobby='" + hobby + '\'' +
+                ", advantage='" + advantage + '\'' +
+                ", weakness='" + weakness + '\'' +
+                ", vid=" + vid +
+                ", type=" + type +
+                '}';
     }
 }

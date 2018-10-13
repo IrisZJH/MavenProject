@@ -1,5 +1,6 @@
 package com.zjh.ssmpro.test;
 
+import com.zjh.ssmpro.dao.InvitationDao;
 import com.zjh.ssmpro.dao.VisitorDao;
 import com.zjh.ssmpro.entity.Visitor;
 import org.junit.Test;
@@ -18,6 +19,8 @@ import java.util.List;
 public class VisitorTest {
    @Autowired
     private VisitorDao visitorDao;
+   @Autowired
+    private InvitationDao invitationDao;
 
     @Test
     public void addVisitor(){
@@ -29,4 +32,6 @@ public class VisitorTest {
     public void findVisitorByNameAndPassword(){
         System.out.println(visitorDao.queryVisitorByNameAndPassword("c","ccc"));
     }
+
+
 }

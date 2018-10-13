@@ -5,28 +5,13 @@ import java.util.Date;
 /**
  * Created by 18221 on 2018/10/13.
  */
-public class Invitation {
+public class Position {
     private int id;
     private String name;
-    private String text;
+    private Department department;
     private Date date;
-    private int type;//0未接受，1接受
 
-    public Invitation() {
-    }
-
-    public Invitation(String name, String text, Date date) {
-        this.name = name;
-        this.text = text;
-        this.date = date;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
+    public Position() {
     }
 
     public int getId() {
@@ -45,12 +30,12 @@ public class Invitation {
         this.name = name;
     }
 
-    public String getText() {
-        return text;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Date getDate() {
@@ -63,12 +48,11 @@ public class Invitation {
 
     @Override
     public String toString() {
-        return "Invitation{" +
+        return "Position{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", text='" + text + '\'' +
+                ", department=" + department +
                 ", date=" + date +
-                ", type=" + type +
                 '}';
     }
 }

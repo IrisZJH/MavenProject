@@ -8,26 +8,24 @@
 	</insert>
 	<select id="queryInvitationByName"  resultType="Invitation">
 		select
-		id,
-		text,
-		date,
-		type
+		*
 		from
-		resums
+		invitation
 		where
 		name=#{name}
 	</select>
 	<select id="queryInvitationByType"  resultType="Invitation">
 		select
-		id,
-		name,
-		text,
-		date,
+		*
 		from
-		resums
+		invitation
 		where
 		type=#{type}
 	</select>
+
+	<update id="updateInvitationByName" parameterType="Invitation">
+		update invitation set type=1 where name=#{name}
+	</update>
 </mapper>
 
 

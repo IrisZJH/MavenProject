@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by 18221 on 2018/10/11.
@@ -46,9 +47,9 @@ public class VisitorHandler {
        Visitor visitor1 =  visitorService.findVisitorByName(visitor.getName());
        if(visitor1==null) {
            visitorService.addVisitor(visitor);
-           return "/admin/adminpage";
+           return "/visitor/login/";
        }else {
-           return "/visitor/login";
+           return "/visitor/regist/";
        }
     }
 
@@ -81,9 +82,19 @@ public class VisitorHandler {
         resums.setVid(id);
         resumsService.addResums(resums);
     }
-
+    @RequestMapping("queryResumsByVid")
+    public List<Resums> queryResumsByVid(Integer vid){
+        List<Resums> resums = resumsService.findResumsByVid(vid);
+        return resums;
+    }
     @RequestMapping("queryInvitationByName")
-    public Invitation queryInvitationByName(String name){
-        return invitationService.queryInvitationByName(name);
+    public List<Invitation> queryInvitationByName(String name){
+        List<Invitation> invitations = invitationService.queryInvitationByName(name);
+        return invitations ;
+    }
+
+    @RequestMapping("acceptInvitation")
+    public void updateInvitationByName(String name){
+        invitationService.updateInvitationByName(name);
     }
 }

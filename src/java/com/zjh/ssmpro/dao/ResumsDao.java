@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface ResumsDao {
     public void insertResums(Resums resums);
-    public Resums queryResumsByVid(Integer vid );
+    public List<Resums> queryResumsByVid(Integer vid );
     public List<Resums> queryAllResums();
+    public List<Resums> queryResumsByType(int type);
 }

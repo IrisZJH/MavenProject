@@ -6,6 +6,8 @@ import com.zjh.ssmpro.service.InvitationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by 18221 on 2018/10/13.
  */
@@ -20,8 +22,19 @@ public class InvitationServiceImpl implements InvitationService {
     }
 
     @Override
-    public Invitation queryInvitationByName(String name) {
-        return invitationDao.queryInvitationByName(name);
+    public List<Invitation> queryInvitationByName(String name) {
+        List<Invitation> invitations = invitationDao.queryInvitationByName(name);
+        return invitations;
+    }
+
+    @Override
+    public void updateInvitationByName(String name) {
+        invitationDao.updateInvitationByName(name);
+    }
+
+    @Override
+    public List<Invitation> queryInvitationByType(int type) {
+        return invitationDao.queryInvitationByType(type);
     }
 
 

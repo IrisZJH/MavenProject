@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.zjh.ssmpro.dao.ResumsDao">
+	<insert id="insertRecruitment" parameterType="Recruitment">
+		insert into
+		recruitment(department_id,position_id,describe,date)
+		values(#{department.id},#{position.id},#{describe},#{date})
+	</insert>
+	<delete id="deleteRecruitmentById" parameterType="int">
+		delete from recruitment where id=#{id}
+	</delete>
+	<select id="queryAllRecruitment"  resultType="Recruitment">
+		select
+		*
+		from
+		recruitment
+
+	</select>
+</mapper>
+
+
+
+
+
+
+
+		
