@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.zjh.ssmpro.dao.InvitationDao">
+	<insert id="insertInvitation" parameterType="Invitation">
+		insert into
+		invitation(id,name,text,date,type)
+		values(#{id},#{name},#{text},#{date},#{type})
+	</insert>
+	<select id="queryInvitationByName"  resultType="Invitation">
+		select
+		id,
+		text,
+		date,
+		type
+		from
+		resums
+		where
+		name=#{name}
+	</select>
+	<select id="queryInvitationByType"  resultType="Invitation">
+		select
+		id,
+		name,
+		text,
+		date,
+		from
+		resums
+		where
+		type=#{type}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+		

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.zjh.ssmpro.dao.AdminDao">
+	<!--<insert id="insertVisitor" parameterType="Visitor">-->
+		<!--insert into-->
+			<!--visitors(name,password)-->
+		<!--values(#{name},#{password})-->
+	<!--</insert>-->
+	<select id="queryAllResums"  resultType="Resums">
+		select
+		*
+		from
+		resums
+
+	</select>
+
+	<!--<select id="queryVisitorByName"  resultType="Visitor">-->
+		<!--select-->
+		<!--id,-->
+		<!--name,-->
+		<!--password-->
+		<!--from-->
+		<!--visitors-->
+		<!--where-->
+		<!--name=#{name}-->
+	<!--</select>-->
+
+	<!--<insert id="insertResums" parameterType="Resums">-->
+		<!--insert into-->
+		<!--resums(name,sex,age,school,experience,skill,hobby,advantage,weakness,vid)-->
+		<!--values(#{name},#{sex},#{age},#{school},#{experience},#{skill},#{hobby},#{advantage},#{weakness},#{vid})-->
+	<!--</insert>-->
+</mapper>
+
+
+
+
+
+
+
+		

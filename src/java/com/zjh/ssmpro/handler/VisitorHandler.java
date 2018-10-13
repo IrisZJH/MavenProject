@@ -1,7 +1,12 @@
 package com.zjh.ssmpro.handler;
 
+import com.zjh.ssmpro.entity.Invitation;
+import com.zjh.ssmpro.entity.Resums;
 import com.zjh.ssmpro.entity.Visitor;
+import com.zjh.ssmpro.service.InvitationService;
+import com.zjh.ssmpro.service.ResumsService;
 import com.zjh.ssmpro.service.VisitorService;
+import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,23 +28,27 @@ import java.sql.SQLException;
 public class VisitorHandler {
     @Autowired
     private VisitorService visitorService;
+    @Autowired
+    private ResumsService resumsService;
+    @Autowired
+    private InvitationService invitationService;
 
     @RequestMapping("regist")
     public String register( ){
-        return "regist";
+        return "/visitor/regist";
     }
     @RequestMapping("login")
     public String login( ){
-        return "login";
+        return "/visitor/login";
     }
     @RequestMapping("addVisitor")
     public String addVisitor(Visitor visitor){
        Visitor visitor1 =  visitorService.findVisitorByName(visitor.getName());
        if(visitor1==null) {
            visitorService.addVisitor(visitor);
-           return "login";
+           return "/admin/adminpage";
        }else {
-           return "result";
+           return "/visitor/login";
        }
     }
 
@@ -48,10 +57,10 @@ public class VisitorHandler {
         Visitor visitor = visitorService.findVisitorByNameAndPassword(name,password);
         if (visitor!=null){
             System.out.println("success");
-            return "result";
+            return "/visitor/visitorpage";
         }else {
             model.addAttribute("str","账号或密码错误");
-            return "forward:regist";
+            return "forward:/visitor/regist";
         }
     }
     @RequestMapping("verifyUserName")
@@ -65,5 +74,16 @@ public class VisitorHandler {
         resp.getWriter().print("{\"ifreg\":\""+b+"\"}");
         System.out.println("{\"ifreg\":\""+b+"\"}");
         return  "";
+    }
+    @RequestMapping("addResums")
+    public void addResums(Visitor visitor, Resums resums){
+        int id = visitor.getId();
+        resums.setVid(id);
+        resumsService.addResums(resums);
+    }
+
+    @RequestMapping("queryInvitationByName")
+    public Invitation queryInvitationByName(String name){
+        return invitationService.queryInvitationByName(name);
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.zjh.ssmpro.dao.ResumsDao">
+	<insert id="insertResums" parameterType="Resums">
+		insert into
+		resums(name,sex,age,school,experience,skill,hobby,advantage,weakness,vid)
+		values(#{name},#{sex},#{age},#{school},#{experience},#{skill},#{hobby},#{advantage},#{weakness},#{vid})
+	</insert>
+	<select id="queryResumsByVid"  resultType="Resums">
+		select
+		id,
+		name,
+		password,
+		sex,age,school,experience,skill,hobby,advantage,weakness
+		from
+		resums
+		where
+		vid=#{vid}
+	</select>
+	<select id="queryAllResums"  resultType="Resums">
+		select
+		*
+		from
+		resums
+
+	</select>
+</mapper>
+
+
+
+
+
+
+
+		

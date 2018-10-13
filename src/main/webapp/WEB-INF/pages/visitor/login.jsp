@@ -12,7 +12,6 @@
     <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
     <script src="../../bootstrap/js/jquery-1.10.2.min.js"></script>
     <script src="../../bootstrap/js/bootstrap.min.js"></script>
-
     <style>
         html,body{
             height: 100%;
@@ -31,45 +30,16 @@
         }
 
     </style>
-    <script type="text/javascript">
-        $(function(){
-            $("#name").blur(function() {
-                var value = $("#name").val();
-                verifyUserName(value);
-            });
-            $("#name").focus(function() {
-                $("#userNameErr").text("");
-            });
-        });
-
-        function verifyUserName(userName){
-            var value = $("#name").val();
-            $.ajax({
-                type:"GET",
-                cache:false,
-                async:false,
-                url:"/visitor/verifyUserName",
-                data:{method:"verifyUserName",name:value},
-                dataType:"json",
-                success:function(result){
-                    if(result.ifreg =="true"){
-                        $("#userNameErr").text("该用户名已被注册！");
-                    }
-                }
-            });
-        }
-    </script>
 </head>
 <body>
 <%--<jsp:include page="base.jsp"></jsp:include>--%>
 <div class="outer-wrap">
     <div class="login-panel">
-        <form class="form-horizontal" role="form" action="/visitor/addVisitor" method="post">
+        <form class="form-horizontal" role="form" action="/visitor/findVisitorByNameAndPassword" method="post">
             <div class="form-group">
                 <label for="name" class="col-sm-2 control-label"></label>
                 <div class="col-sm-10">
-                    <input type="text"   name="name" class="form-control" id="name" placeholder="name">
-                    <label id = "userNameErr"></label><br/>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="name">
                 </div>
             </div>
             <div class="form-group">
@@ -89,8 +59,8 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-danger btn-lg">注册</button>
-                    <a href="/visitor/regist">点击登录</a>
+                    <button type="submit" class="btn btn-danger btn-lg">登录</button>
+                    <a href="/visitor/regist">没有账号？点击免费注册</a>
                 </div>
             </div>
         </form>

@@ -29,6 +29,12 @@
 		where
 		name=#{name}
 	</select>
+
+	<insert id="insertResums" parameterType="Resums">
+		insert into
+		resums(name,sex,age,school,experience,skill,hobby,advantage,weakness,vid)
+		values(#{name},#{sex},#{age},#{school},#{experience},#{skill},#{hobby},#{advantage},#{weakness},#{vid})
+	</insert>
 </mapper>
 
 

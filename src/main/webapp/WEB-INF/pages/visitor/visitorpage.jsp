@@ -12,10 +12,11 @@
     <script src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 </head>
 <body>
+<jsp:include page="base.jsp"></jsp:include>
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">company</a>
+            <a class="navbar-brand" href="#">visitor</a>
         </div>
         <form class="navbar-form navbar-left" role="search">
             <div class="form-group">

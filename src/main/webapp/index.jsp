@@ -9,6 +9,12 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        html,body{
+            height: 100%;
+            background:url(../../img/2.jpg) no-repeat;background-size: cover;font-size: 16px;
+        }
+    </style>
 </head>
 <body>
 <h3 style="text-align: center;"><a href="/visitor/login">Login</a></h3>
