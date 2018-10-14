@@ -10,36 +10,7 @@
 <head>
     <title>Title</title>
     <script src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
-    <script>
-        $(function () {
-            $(".navbar-nav").find("li").each(function () {
-                var a = $(this).find("a:first")[0];
-                if ($(a).attr("href")===location.pathname) {
-                    $(this).addClass("active");
-                } else {
-                    $(this).removeClass("active");
-                }
-            });
-        })
-    </script>
-    <style>
-        html,body{
-            height: 100%;
-            background:url(../../../img/2.jpg) no-repeat;background-size: cover;font-size: 16px;
-        }
-        .outer-wrap{
-            height: 100%;
-            position: relative;
-        }
-        .login-panel{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -150px;
-            margin-left: -200px;
-        }
 
-    </style>
 </head>
 <body>
 <jsp:include page="base.jsp"></jsp:include>

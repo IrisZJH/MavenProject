@@ -6,6 +6,7 @@
 			visitors(name,password)
 		values(#{name},#{password})
 	</insert>
+
 	<select id="queryVisitorByNameAndPassword"  resultType="Visitor">
 		select
 		id,

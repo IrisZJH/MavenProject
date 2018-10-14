@@ -9,6 +9,7 @@ import com.zjh.ssmpro.service.VisitorService;
 import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,40 +34,58 @@ public class VisitorHandler {
     private ResumsService resumsService;
     @Autowired
     private InvitationService invitationService;
-
     @RequestMapping("regist")
     public String register( ){
+        System.out.println("regist");
         return "/visitor/regist";
     }
     @RequestMapping("login")
-    public String login( ){
-        return "/visitor/login";
+    public String login(Visitor visitor,Model model){
+        int status = visitor.getStatus();
+        model.addAttribute("visitor", visitor);
+        System.out.println(status);
+        if(status==0) {
+            Visitor visitor1 = visitorService.findVisitorByNameAndPassword(visitor.getName(),visitor.getPassword());
+            if (visitor1!=null){
+                System.out.println("success");
+                return "../../menu";
+            }else {
+                model.addAttribute("str","账号或密码错误");
+                return "../../index";
+            }
+
+//        }if(status==1){
+//            return "forward:admin/findAdminByNameAndPassword";
+        }else{
+            return "forward:employee/findEmployeeByNameAndPassword";
+        }
     }
     @RequestMapping("addVisitor")
     public String addVisitor(Visitor visitor){
        Visitor visitor1 =  visitorService.findVisitorByName(visitor.getName());
        if(visitor1==null) {
            visitorService.addVisitor(visitor);
-           return "/visitor/login/";
+           return "../../index";
        }else {
-           return "/visitor/regist/";
+           return "visitor/regist";
        }
     }
 
-    @RequestMapping("findVisitorByNameAndPassword")
-    public String findVisitorByNameAndPassword(String name,String password,ModelMap model){
-        Visitor visitor = visitorService.findVisitorByNameAndPassword(name,password);
-        if (visitor!=null){
-            System.out.println("success");
-            return "/visitor/visitorpage";
-        }else {
-            model.addAttribute("str","账号或密码错误");
-            return "forward:/visitor/regist";
-        }
-    }
+//    @RequestMapping("findVisitorByNameAndPassword")
+//    public String findVisitorByNameAndPassword(String name,String password,ModelMap model){
+//        Visitor visitor = visitorService.findVisitorByNameAndPassword(name,password);
+//        if (visitor!=null){
+//            System.out.println("success");
+//            return "/visitor/visitorpage";
+//        }else {
+//            model.addAttribute("str","账号或密码错误");
+//            return "forward:visitor/regist";
+//        }
+//    }
     @RequestMapping("verifyUserName")
     public String verifyUserName(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        System.out.println("a");
         boolean b = false;
         Visitor v= visitorService.findVisitorByName(req.getParameter("name"));
         if (v!=null) {
@@ -76,11 +95,21 @@ public class VisitorHandler {
         System.out.println("{\"ifreg\":\""+b+"\"}");
         return  "";
     }
+
+    @RequestMapping("toResumsPage")
+        public String toResumsPage(Visitor visitor,Model model){
+            model.addAttribute("visitor",visitor);
+            return "../../jsp/Resums";
+        }
+
+
     @RequestMapping("addResums")
-    public void addResums(Visitor visitor, Resums resums){
+    public String addResums(Visitor visitor, Resums resums,Model model){
         int id = visitor.getId();
+        model.addAttribute("visitor",visitor);
         resums.setVid(id);
         resumsService.addResums(resums);
+        return "../../menu";
     }
     @RequestMapping("queryResumsByVid")
     public List<Resums> queryResumsByVid(Integer vid){

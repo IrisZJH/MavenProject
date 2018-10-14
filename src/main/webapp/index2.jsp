@@ -8,73 +8,67 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <title>网上招聘系统主页</title>
-    <link href="css/index.css" rel="stylesheet" type="text/css" />
+    <title>Title</title>
+    <script src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
+    <script>
+        $(function () {
+            $(".navbar-nav").find("li").each(function () {
+                var a = $(this).find("a:first")[0];
+                if ($(a).attr("href")===location.pathname) {
+                    $(this).addClass("active");
+                } else {
+                    $(this).removeClass("active");
+                }
+            });
+        })
+    </script>
+    <style>
+        html,body{
+            height: 100%;
+            background:url(../../../img/2.jpg) no-repeat;background-size: cover;font-size: 16px;
+        }
+        .outer-wrap{
+            height: 100%;
+            position: relative;
+        }
+        .login-panel{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -150px;
+            margin-left: -200px;
+        }
+
+    </style>
 </head>
-<body style="text-align: center;">
-
-<div id="contion">
-
-    <div id="top">
-        <%--<%@ include file="head.jsp" %>--%>
-    </div>
-    <div id="sec">
-        <div id="sec_right">
-            <%--<iframe frameborder="0" style="width:200px;height:165px;" src="jsp/web_note.jsp">--%>
-
-            <%--</iframe>--%>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">visitor</a>
         </div>
-        <div id="sec_left">
-
-        </div>
-    </div>
-
-    <div id="third">
-        <div id="third1">
-            <div style="width:202px; height:30px; background-image:url(img/log.jpg);"></div>
-            <div style="width:202px; height:135px; text-align: left; background-color: #C3E5FE;">
-                <form id="form1" method="post" action="/visitor/findVisitorByNameAndPassword" style="padding-left: 10px;">
-                    <br />
-                    用户：<input type="text" name="name" style="height: 15px;width: 120px;"  /><br /><br/>
-                    密码：<input type="password" name="password" style="height: 15px;width: 120px;" /><br /><br/>
-                    类别： <select name="status">
-                    <option value="visitor">游客</option>
-                    <option value="admin">管理员</option>
-                </select><br/><br/>
-                    <center>
-                        <input type="submit" value="登录" />&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="reset"  value="重置" /><br/>
-                    </center>
-                </form>
-                <div style="font-size: 15px;text-align: center;">
-                    <a href="/visitor/regist" style="color: #F10301;">【游客注册】</a>
-                </div>
-                <div style="height: 15px;"></div>
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
             </div>
-            <div style="background-color:#000000; height: 150px;background-image: url(img/x.jpg);"></div>
-        </div>
-        <div id="third2">
-            <div style="height: 25px; background-color: #FEFBBC;">
-                <div style="padding-top: 5px;">最新人才信息</div>
-            </div>
-            <div style="height:170px;">
-                <%--<div style="width760px；height:170px; background-color:#996600;">--%>
-                    <%--&lt;%&ndash;<%@ include file="jsp/index_person.jsp" %>&ndash;%&gt;--%>
-                <%--</div>--%>
-            </div>
-            <div style="width: 760px; height: 20px; background-color: #FEFBBC;">
-                <div style="padding-top: 4px;">最新招聘信息</div>
-            </div>
-            <div style="height:170px;">
-                <div style="float:left; height:170px; background-color:#996666;">
-                    <iframe style="width: 760px; height:175px; background-color:#996666;" frameborder="0" scrolling="no" src="jsp/index_company.jsp">
-                    </iframe>
-                </div>
-            </div>
+            <button type="submit" class="btn btn-default">提交</button>
+        </form>
+        <div>
+            <ul class="nav navbar-nav">
+                <li ><a href="#">招聘信息</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        我的信息 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">个人资料</a></li>
+                        <li><a href="#">我的简历</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
+</nav>
 
-</div>
 </body>
 </html>

@@ -7,6 +7,7 @@ public class Visitor {
     private int id;
     private String name;
     private String password;
+    private int status;
 
     public Visitor() {
     }
@@ -41,12 +42,21 @@ public class Visitor {
         this.password = password;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Visitor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

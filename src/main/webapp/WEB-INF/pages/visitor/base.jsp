@@ -15,7 +15,7 @@
     <style>
         html,body{
             height: 100%;
-            background:url(../../img/2.jpg) no-repeat;background-size: cover;font-size: 16px;
+            background:url(../../../img/2.jpg) no-repeat;background-size: cover;font-size: 16px;
         }
         .outer-wrap{
             height: 100%;

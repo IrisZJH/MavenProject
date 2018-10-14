@@ -9,15 +9,48 @@
 <html>
 <head>
     <title>Title</title>
-    <style>
-        html,body{
-            height: 100%;
-            background:url(../../img/2.jpg) no-repeat;background-size: cover;font-size: 16px;
+    <%--<link href="css/index.css" rel="stylesheet" type="text/css" />--%>
+    <style type="text/css">
+        #d{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin:-150px 0 0 -100px;
+            width:200px;
+            height:100px;
+
+
         }
     </style>
+
 </head>
-<body>
-<h3 style="text-align: center;"><a href="/visitor/login">Login</a></h3>
-<h3 style="text-align: center;"><a href="/visitor/regist">regist</a></h3>
+
+<body style="background-image:url(${request.pageContext.contextPath}/img/p2.jpg); background-size:100%,100%">
+<div id="d">
+    <div style="width:202px; height:30px; background-image:url(${request.pageContext.contextPath}/img/log.jpg)"></div>
+    <div style="width:202px; height:135px; text-align: left; background-color: #C3E5FE;">
+        <form id="form1" method="post" action="/visitor/login" style="padding-left: 10px;">
+            <br />
+            用户：<input type="text" name="name" style="height: 15px;width: 120px;"  /><br /><br/>
+            密码：<input type="password" name="password" style="height: 15px;width: 120px;" /><br /><br/>
+            类别： <select name="status">
+            <option value="0">游客</option>
+            <option value="1">管理员</option>
+            <option value="2">员工</option>
+        </select><br/><br/>
+            <span style="color: red">${requestScope.str}</span>
+            <center>
+                <input type="submit" value="登录" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="reset"  value="重置" /><br/>
+            </center>
+        </form>
+        <div style="font-size: 15px;text-align: center;">
+            <a href="/visitor/regist" style="color: #F10301;">【游客注册】</a>
+        </div>
+        <div style="height: 15px;"></div>
+    </div>
+</div>
+</div>
+
 </body>
 </html>
