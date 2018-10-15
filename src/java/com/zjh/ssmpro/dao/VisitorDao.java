@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 @Repository
 public interface VisitorDao {
     public void insertVisitor(Visitor visitor);
-    public Visitor queryVisitorByNameAndPassword(@Param("name")String name, @Param("password")String password);
+    public Visitor queryVisitorByNameAndPassword(@Param("name")String name, @Param("password")String password,@Param("status")int status);
     public Visitor queryVisitorByName(String name);
 
 }

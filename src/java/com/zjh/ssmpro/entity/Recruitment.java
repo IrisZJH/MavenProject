@@ -11,8 +11,17 @@ public class Recruitment {
     private Position position;//职位
     private String describe;
     private Date date;
+    private String aName;
 
     public Recruitment() {
+    }
+
+    public String getaName() {
+        return aName;
+    }
+
+    public void setaName(String aName) {
+        this.aName = aName;
     }
 
     public int getId() {
@@ -63,6 +72,7 @@ public class Recruitment {
                 ", position=" + position +
                 ", describe='" + describe + '\'' +
                 ", date=" + date +
+                ", aName='" + aName + '\'' +
                 '}';
     }
 }

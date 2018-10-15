@@ -13,5 +13,5 @@ import java.util.List;
 public interface RecruitmentDao {
     public void insertRecruitment(Recruitment recruitment);
     public void deleteRecruitmentById(Integer id);
-    public List<Recruitment> queryAllrecruitment();
+    public List<Recruitment> queryAllRecruitment();
 }

@@ -9,6 +9,7 @@ public class Department {
     private int id;
     private String name;
     private Date date;
+    private Position position;
 
     public Department() {
     }
@@ -42,7 +43,13 @@ public class Department {
         this.date = date;
     }
 
+    public Position getPosition() {
+        return position;
+    }
 
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 
     @Override
     public String toString() {
@@ -50,7 +57,7 @@ public class Department {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", date=" + date +
-
+                ", position=" + position +
                 '}';
     }
 }

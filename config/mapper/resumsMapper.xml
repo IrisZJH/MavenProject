@@ -8,9 +8,15 @@
 	</insert>
 	<select id="queryResumsByVid"  resultType="Resums">
 		select
-		id,
-		name,
-		sex,age,school,experience,skill,hobby,advantage,weakness,vid
+		*
+		from
+		resums
+		where
+		vid=#{vid}
+	</select>
+	<select id="queryResumByVid"  resultType="Resums">
+		select
+		*
 		from
 		resums
 		where
@@ -31,6 +37,9 @@
 		where
 		type=#{type}
 	</select>
+	<update id="updateResumsByVid" parameterType="Resums">
+		update resums set name=#{name},sex=#{sex},age =#{age},school=#{school},experience=#{experience},skill=#{skill},hobby=#{hobby},advantage=#{advantage},weakness=#{weakness},type=#{type} where vid=#{vid}
+	</update>
 </mapper>
 
 

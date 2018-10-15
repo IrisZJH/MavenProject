@@ -30,7 +30,7 @@ public class VisitorTest {
     }
     @Test
     public void findVisitorByNameAndPassword(){
-        System.out.println(visitorDao.queryVisitorByNameAndPassword("c","ccc"));
+        System.out.println(visitorDao.queryVisitorByNameAndPassword("c","ccc",0));
     }
 
 

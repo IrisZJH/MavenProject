@@ -1,45 +1,63 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 18221
-  Date: 2018/10/12
-  Time: 12:35
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <html>
 <head>
-    <title>Title</title>
-    <script src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
+    <title>menu</title>
+    <link rel="stylesheet" href="skin/css/base.css" type="text/css" />
+    <link rel="stylesheet" href="skin/css/menu.css" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <script language='javascript'>var curopenItem = '1';</script>
+    <script language="javascript" type="text/javascript" src="skin/js/frame/menu.js"></script>
+    <base target="main" />
 </head>
-<body>
-<jsp:include page="base.jsp"></jsp:include>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">admin</a>
-        </div>
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">提交</button>
-        </form>
-        <div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">招聘信息</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        我的信息 <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">个人资料</a></li>
-                        <li><a href="#">我的简历</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<body target="main">
+<table width='99%' height="100%" border='0' cellspacing='0' cellpadding='0'>
+    <tr>
+        <td style='padding-left:3px;padding-top:8px' valign="top">
+            您好：管理员 ${requestScope.visitor.name}，您可以有以下操作！
+            <!-- Item 1 Strat -->
+            <dl class='bitem'>
+                <dt onClick='showHide("items1_1")'><b>招聘</b></dt>
+                <dd style='display:block' class='sitem' id='items1_1'>
+                    <ul class='sitemu'>
+                        <li>
+                            <div class='items'>
+                                <div class='fllct'><a href="/admin/toRecruitmentPage" target='main'>发布招聘信息</a></div>
+                            </div>
+                        </li>
+                        <li><a href="/visitor/queryResumsByVid?vid=${requestScope.visitor.id}" target='main'>查看简历并通知面试</a> </li>
+                        <li><a href="/visitor/queryResumsByVid?vid=${requestScope.visitor.id}" target='main'>录用</a> </li>
 
+                    </ul>
+                </dd>
+            </dl>
+            <!-- Item 1 End -->
+            <!-- Item 2 Strat -->
+            <%--<dl class='bitem'>--%>
+                <%--<dt onClick='showHide("items2_1")'><b>简历操作</b></dt>--%>
+                <%--<dd style='display:block' class='sitem' id='items2_1'>--%>
+                    <%--<ul class='sitemu'>--%>
+                        <%--<li><a href='showJianLisForOut.action' target='main'>修改简历</a></li>--%>
+                        <%--<li><a href='showWaifa.action' target='main'>外发简历</a></li>--%>
+                    <%--</ul>--%>
+                <%--</dd>--%>
+                <%--</dd>--%>
+            <%--</dl>--%>
+            <!-- Item 2 End -->
+            <!-- Item 3 Strat -->
+            <%--<dl class='bitem'>--%>
+                <%--<dt onClick='showHide("items3_1")'><b>工作机会</b></dt>--%>
+                <%--<dd style='display:block' class='sitem' id='items3_1'>--%>
+                    <%--<ul class='sitemu'>--%>
+                        <%--<li><a href='showUserSearchZhiWei.action' target='main'>职位搜索</a></li>--%>
+                        <%--<li><a href='showMianshiTongzhi.action' target='main'>面试通知单</a></li>--%>
+                        <%--<li><a href='showShenqingjilu.action' target='main'>职位申请列表</a></li>--%>
+                    <%--</ul>--%>
+                <%--</dd>--%>
+                <%--</dd>--%>
+            <%--</dl>--%>
+            <!-- Item 3 End -->
+        </td>
+    </tr>
+</table>
 </body>
 </html>

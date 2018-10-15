@@ -8,22 +8,18 @@
 		department
 	</select>
 
-	<insert id="insertDepartment" parameterType="Department">
-		insert into
-		department(name,date)
-		values(#{name},#{date})
-	</insert>
-	<delete id="deleteDepartmentById" parameterType="int">
-		delete from department where id=#{id}
-	</delete>
-
 	<select id="queryDepartmentById" resultType="Department">
 		select
-		*
+		d.id,
+		d,name
+		p.id "position.id",
+		p.name "position.name"
 		from
-		department
+		department d,position p
 		where
-		id = #{id}
+		p.department_id = d.id
+		AND
+		d.id=#{id}
 
 	</select>
 

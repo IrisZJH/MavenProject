@@ -10,5 +10,5 @@ import java.util.List;
 public interface RecruitmentService {
     public void insertRecruitment(Recruitment recruitment);
     public void deleteRecruitmentById(Integer id);
-    public List<Recruitment> queryAllrecruitment();
+    public List<Recruitment> queryAllRecruitment();
 }

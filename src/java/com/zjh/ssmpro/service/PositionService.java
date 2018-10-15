@@ -1,16 +1,14 @@
-package com.zjh.ssmpro.dao;
+package com.zjh.ssmpro.service;
 
 import com.zjh.ssmpro.entity.Department;
 import com.zjh.ssmpro.entity.Position;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by 18221 on 2018/10/13.
  */
-@Repository
-public interface PositionDao {
+public interface PositionService {
     public void insertPosition(Position position);
     public void deletePositionById(Integer id);
     public List<Position> queryAllPosition();

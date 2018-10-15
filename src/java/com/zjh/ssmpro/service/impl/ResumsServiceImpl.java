@@ -39,4 +39,14 @@ public class ResumsServiceImpl implements ResumsService {
     public List<Resums> queryResumsByType(int type) {
         return resumsDao.queryResumsByType(type);
     }
+
+    @Override
+    public Resums queryResumByVid(Integer vid) {
+        return resumsDao.queryResumByVid(vid);
+    }
+
+    @Override
+    public void updateResumsByVid(Resums resums) {
+        resumsDao.updateResumsByVid(resums);
+    }
 }

@@ -21,9 +21,11 @@
 		select
 		*
 		from
-		position
+		position p,department d
 		where
-		position_id = #{id}
+		p.id = d.department_id
+		AND
+		p.id =#{id}
 	</select>
 
 	<update id="updatePositionById" parameterType="Position">

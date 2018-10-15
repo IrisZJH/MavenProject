@@ -113,8 +113,8 @@
 <form name="form" id="form" action="/visitor/addVisitor" method="post">
     <div id="all">
         <div style="font: 30px '微软雅黑';margin-left: 30px"> 注册界面</div><br>
-        用户名： <input type="text"   name="name" id="name" placeholder="name">
-        <label id = "userNameErr"></label><br/>
+        用户名：<input type="text"   name="name" id="name">
+        <div id = "userNameErr"></div><br/>
         密 码 ：<input type="password" name="password" id="pwd"/>
         <div id="pwdNote"></div><br>
         确认密码：<input type="password" name="password2" id="pwd2" >

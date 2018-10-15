@@ -1,8 +1,11 @@
 package com.zjh.ssmpro.service.impl;
 
 import com.zjh.ssmpro.dao.DepartmentDao;
+import com.zjh.ssmpro.dao.PositionDao;
 import com.zjh.ssmpro.entity.Department;
+import com.zjh.ssmpro.entity.Position;
 import com.zjh.ssmpro.service.DepartmentService;
+import com.zjh.ssmpro.service.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,8 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private DepartmentDao departmentDao;
+    @Autowired
+    private PositionDao positionDao;
 
     @Override
     public void insertDepartment(Department department) {
@@ -37,7 +42,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void updateDepartmentrById(Integer id) {
+    public List<Position> findAllPosition() {
+        return positionDao.queryAllPosition();
+    }
+
+    @Override
+    public void updateDepartmentById(Integer id) {
         departmentDao.updateDepartmentrById(id);
     }
 }

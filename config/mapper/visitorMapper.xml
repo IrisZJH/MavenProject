@@ -18,7 +18,10 @@
 		name=#{name}
 		AND
 		password=#{password}
+		AND
+		status=#{status}
 	</select>
+
 
 	<select id="queryVisitorByName"  resultType="Visitor">
 		select

@@ -26,7 +26,7 @@ public class RecruitmentServiceImpl implements RecruitmentService {
     }
 
     @Override
-    public List<Recruitment> queryAllrecruitment() {
-        return recruitmentDao.queryAllrecruitment();
+    public List<Recruitment> queryAllRecruitment() {
+        return recruitmentDao.queryAllRecruitment();
     }
 }

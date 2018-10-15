@@ -37,8 +37,9 @@
             <option value="0">游客</option>
             <option value="1">管理员</option>
             <option value="2">员工</option>
-        </select><br/><br/>
-            <span style="color: red">${requestScope.str}</span>
+        </select><br/><br/><br/>
+            <div style="color: red">${requestScope.str}</div>
+            <br/>
             <center>
                 <input type="submit" value="登录" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="reset"  value="重置" /><br/>

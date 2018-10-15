@@ -13,4 +13,6 @@ public interface ResumsService {
     public Resums findResumsByName(String name);
     public List<Resums> queryAllResums();
     public List<Resums> queryResumsByType(int type);
+    public Resums queryResumByVid(Integer vid );
+    public void updateResumsByVid(Resums resums);
 }

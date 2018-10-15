@@ -13,7 +13,7 @@
 <table width='99%' height="100%" border='0' cellspacing='0' cellpadding='0'>
     <tr>
         <td style='padding-left:3px;padding-top:8px' valign="top">
-            您好：个人用户 ${requestScope.visitor.name }，您可以有以下操作！
+            您好：个人用户 ${requestScope.visitor.name}，您可以有以下操作！
             <!-- Item 1 Strat -->
             <dl class='bitem'>
                 <dt onClick='showHide("items1_1")'><b>简历中心</b></dt>
@@ -21,10 +21,10 @@
                     <ul class='sitemu'>
                         <li>
                             <div class='items'>
-                                <div class='fllct'><a href="/visitor/toResumsPage" target='main'>新建简历</a></div>
+                                <div class='fllct'><a href="/visitor/toResumsPage?id=${requestScope.visitor.id}" target='main'>新建简历</a></div>
                             </div>
                         </li>
-                        <li><a href='showJianLis.action' target='main'>简历预览</a> </li>
+                        <li><a href="/visitor/queryResumsByVid?vid=${requestScope.visitor.id}" target='main'>简历预览</a> </li>
 
                     </ul>
                 </dd>
@@ -35,7 +35,7 @@
                 <dt onClick='showHide("items2_1")'><b>简历操作</b></dt>
                 <dd style='display:block' class='sitem' id='items2_1'>
                     <ul class='sitemu'>
-                        <li><a href='showJianLisForOut.action' target='main'>打印简历</a></li>
+                        <li><a href='showJianLisForOut.action' target='main'>修改简历</a></li>
                         <li><a href='showWaifa.action' target='main'>外发简历</a></li>
                     </ul>
                 </dd>
@@ -47,6 +47,7 @@
                 <dt onClick='showHide("items3_1")'><b>工作机会</b></dt>
                 <dd style='display:block' class='sitem' id='items3_1'>
                     <ul class='sitemu'>
+                        <li><a href='/visitor/queryAllRecruitment?vid=${requestScope.visitor.id}' target='main'>查看所有招聘信息</a></li>
                         <li><a href='showUserSearchZhiWei.action' target='main'>职位搜索</a></li>
                         <li><a href='showMianshiTongzhi.action' target='main'>面试通知单</a></li>
                         <li><a href='showShenqingjilu.action' target='main'>职位申请列表</a></li>
