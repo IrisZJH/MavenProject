@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-<mapper namespace="com.zjh.ssmpro.dao.VisitorDao">
-	<insert id="insertVisitor" parameterType="Visitor">
+<mapper namespace="com.zjh.ssmpro.dao.EmployeesDao">
+	<insert id="insertEmployees" parameterType="Employees">
 		insert into
-			visitors(name,password)
+			employees(name,password)
 		values(#{name},#{password})
 	</insert>
 
@@ -13,34 +13,32 @@
 		name,
 		password
 		from
-		visitors
+		employees
 		where
 		name=#{name}
 		AND
 		password=#{password}
-		AND
-		status=#{status}
 	</select>
 
 
-	<select id="queryVisitorByName"  resultType="Visitor">
-		select
-		id,
-		name,
-		password
-		from
-		visitors
-		where
-		name=#{name}
-	</select>
-	<select id="queryVisitorByType"  resultType="Visitor">
-		select
-		*
-		from
-		visitors
-		where
-		type=#{type}
-	</select>
+	<!--<select id="queryVisitorByName"  resultType="Visitor">-->
+		<!--select-->
+		<!--id,-->
+		<!--name,-->
+		<!--password-->
+		<!--from-->
+		<!--visitors-->
+		<!--where-->
+		<!--name=#{name}-->
+	<!--</select>-->
+	<!--<select id="queryVisitorByType"  resultType="Visitor">-->
+		<!--select-->
+		<!--*-->
+		<!--from-->
+		<!--visitors-->
+		<!--where-->
+		<!--type=#{type}-->
+	<!--</select>-->
 
 	<select id="queryVisitorByVid"  resultType="Visitor">
 		select

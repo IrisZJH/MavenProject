@@ -3,8 +3,8 @@
 <mapper namespace="com.zjh.ssmpro.dao.InvitationDao">
 	<insert id="insertInvitation" parameterType="Invitation">
 		insert into
-		invitation(id,name,text,date,type)
-		values(#{id},#{name},#{text},#{date},#{type})
+		invitation(name,vid,text,date,aName)
+		values(#{name},#{vid},#{text},#{date},#{aName})
 	</insert>
 	<select id="queryInvitationByName"  resultType="Invitation">
 		select
@@ -22,9 +22,27 @@
 		where
 		type=#{type}
 	</select>
+	<select id="queryInvitationByVid"  resultType="Invitation">
+		select
+		*
+		from
+		invitation
+		where
+		vid=#{vid}
+		AND
+		type=0
+	</select>
 
-	<update id="updateInvitationByName" parameterType="Invitation">
-		update invitation set type=1 where name=#{name}
+	<select id="queryInvitationById"  resultType="Invitation">
+		select
+		*
+		from
+		invitation
+		where
+		id=#{id}
+	</select>
+	<update id="updateInvitationById" parameterType="Invitation">
+		update invitation set type=#{type} where id=#{id}
 	</update>
 </mapper>
 

@@ -59,5 +59,4 @@
     <input type="hidden" name="vid" value="${requestScope.visitor.id}">
     <input type="submit" value="保存并返回"></form>
 </body>
-</body>
 </html>

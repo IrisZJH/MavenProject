@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by 18221 on 2018/10/11.
  */
-@RequestMapping("visitor")
+@RequestMapping("employee")
 @Controller
 public class EmployeeHandler {
     @Autowired
@@ -162,8 +162,5 @@ public class EmployeeHandler {
         return invitations ;
     }
 
-    @RequestMapping("acceptInvitation")
-    public void updateInvitationByName(String name){
-        invitationService.updateInvitationByName(name);
-    }
+
 }

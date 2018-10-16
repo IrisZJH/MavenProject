@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by 18221 on 2018/10/11.
  */
@@ -30,5 +32,15 @@ public class VisitorServiceImpl implements VisitorService{
     @Override
     public Visitor findVisitorByName(String name) {
         return visitorDao.queryVisitorByName(name);
+    }
+
+    @Override
+    public Visitor queryVisitorByVid(Integer vid) {
+        return visitorDao.queryVisitorByVid(vid);
+    }
+
+    @Override
+    public List<Visitor> queryVisitorByType(Integer type) {
+        return visitorDao.queryVisitorByType(type);
     }
 }

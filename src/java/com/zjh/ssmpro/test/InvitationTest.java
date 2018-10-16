@@ -22,7 +22,7 @@ public class InvitationTest {
 
     @Test
     public void addInvitation(){
-        Invitation invitation = new Invitation("a",".......",new Date(System.currentTimeMillis()));
+        Invitation invitation = new Invitation("a",32,".......",new Date(System.currentTimeMillis()),"a");
         invitationDao.insertInvitation(invitation);
         System.out.println(invitation);
     }
@@ -32,11 +32,7 @@ public class InvitationTest {
         System.out.println(invitations);
     }
 
-    @Test
-    public void updateInvitationByName(){
-        invitationDao.updateInvitationByName("a");
-        System.out.println("ok");
-    }
+
     @Test
     public void queryInvitationByType(){
         invitationDao.queryInvitationByType(1);

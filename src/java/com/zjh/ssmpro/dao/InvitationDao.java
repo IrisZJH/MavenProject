@@ -13,5 +13,7 @@ public interface InvitationDao {
     public void insertInvitation(Invitation invitation);
     public List<Invitation> queryInvitationByName(String name);
     public List<Invitation> queryInvitationByType(int type);
-    public void updateInvitationByName(String name);
+    public void updateInvitationById(Invitation invitation);
+    public List<Invitation> queryInvitationByVid(Integer vid);
+    public Invitation queryInvitationById(Integer id);
 }

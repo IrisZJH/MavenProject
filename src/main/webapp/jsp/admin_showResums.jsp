@@ -28,28 +28,37 @@
     </style>
 </head>
 <body style="background-image:url(${request.pageContext.contextPath}/img/p2.jpg); background-size:100%,100%">
-<p><b>招聘信息</b></p>
+<p><b>简历信息</b></p>
 <table border=2px cellspacing="0">
     <tr>
         <td>id</td>
-        <td>department</td>
-        <td>position</td>
-        <td>describe</td>
-        <td>date</td>
-        <td>aName</td>
+        <td>姓名</td>
+        <td>性别</td>
+        <td>年龄</td>
+        <td>学历</td>
+        <td>工作经验</td>
+        <td>技能</td>
+        <td>爱好</td>
+        <td>优点</td>
+        <td>缺点</td>
     </tr>
-    <c:forEach items="${requestScope.recruitment}" var="recruitment">
+    <c:forEach items="${requestScope.resums}" var="resums">
         <tr>
-            <td>${recruitment.id}</td>
-            <td>${recruitment.department.name}</td>
-            <td>${recruitment.department.position.name}</td>
-            <td>${recruitment.describe}</td>
-            <td>${recruitment.date}</td>
-            <td>${recruitment.aName}</td>
-        <td><a href="${pageContext.request.contextPath}/visitor/toudiResum?vid=${requestScope.vid}">投递简历</a></td>
+            <td>${resums.id}</td>
+            <td>${resums.name}</td>
+            <td>${resums.sex}</td>
+            <td>${resums.age}</td>
+            <td>${resums.school}</td>
+            <td>${resums.experience}</td>
+            <td>${resums.skill}</td>
+            <td>${resums.advantage}</td>
+            <td>${resums.weakness}</td>
+            <td><a href="${pageContext.request.contextPath}/admin/toInvitationPage?vid=${resums.vid}">通知面试</a></td>
+            <td><a href="${pageContext.request.contextPath}/admin/resumsRead?id=${resums.id}">已阅</a></td>
         </tr>
-        <a
     </c:forEach>
+    <%--<a href=""--%>
 </table>
+<a href="${pageContext.request.contextPath}/admin/returnmenu?vid=${requestScope.visitor.id}">返回主菜单</a>
 </body>
 </html>

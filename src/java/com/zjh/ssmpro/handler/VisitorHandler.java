@@ -74,7 +74,16 @@ public class VisitorHandler {
                 return "../../index";
             }
         }else{
-            return "forward:employee/findEmployeeByNameAndPassword";
+            Visitor visitor1 = visitorService.findVisitorByNameAndPassword(visitor.getName(),visitor.getPassword(),visitor.getStatus());
+            if (visitor1!=null){
+                System.out.println("success");
+                model.addAttribute("visitor", visitor1);
+                System.out.println("登陆成功保存visitor:"+visitor1);
+                return "admin/adminpage";
+            }else {
+                model.addAttribute("str", "账号或密码错误");
+                return "../../index";
+            }
         }
     }
     @RequestMapping("addVisitor")
@@ -114,11 +123,18 @@ public class VisitorHandler {
     }
 
     @RequestMapping("toResumsPage")
-        public String toResumsPage(Integer vid,Visitor visitor,Model model){
-        System.out.println(vid);
-            model.addAttribute("visitor",visitor);
-        System.out.println("toResumPage:"+visitor);
+        public String toResumsPage(Integer id,Visitor visitor,Model model){
+        Visitor visitor1 = visitorService.queryVisitorByVid(id);
+        model.addAttribute("visitor",visitor1);
+        List<Resums> resums = resumsService.findResumsByVid(id);
+        if(resums==null) {
+            model.addAttribute("visitor", visitor1);
+            System.out.println("toResumPage:" + visitor1);
             return "../../jsp/Resums";
+        }else{
+            System.out.println("跳转回menu"+visitor1);
+            return "../../menu";
+        }
         }
 
 
@@ -162,14 +178,38 @@ public class VisitorHandler {
         return "../../jsp/showRecruitment";
     }
 
-    @RequestMapping("queryInvitationByName")
-    public List<Invitation> queryInvitationByName(String name){
-        List<Invitation> invitations = invitationService.queryInvitationByName(name);
-        return invitations ;
+    @RequestMapping("queryInvitationByVid")
+    public String queryInvitationByVid(Integer vid,Model model){
+        List<Invitation> invitations = invitationService.queryInvitationByVid(vid);
+        Visitor visitor = visitorService.queryVisitorByVid(vid);
+        model.addAttribute("visitor",visitor);
+        System.out.println("查询面试通知时"+visitor);
+        model.addAttribute("invitations",invitations);
+        return "../../jsp/showInvitations";
     }
 
     @RequestMapping("acceptInvitation")
-    public void updateInvitationByName(String name){
-        invitationService.updateInvitationByName(name);
+    public String updateInvitationById(Integer id,Model model){
+        System.out.println("acceptInvitation"+id);
+        Invitation invitation = invitationService.queryInvitationById(id);
+        System.out.println(invitation);
+        invitation.setType(1);
+        invitationService.updateInvitationById(invitation);
+        List<Invitation> invitations = invitationService.queryInvitationByVid(invitation.getVid());
+        model.addAttribute("invitations",invitations);
+        Visitor visitor = visitorService.queryVisitorByVid(invitation.getVid());
+        System.out.println("接受面试返回面试通知页"+visitor);
+        model.addAttribute("visitor",visitor);
+        return "../../jsp/showInvitations";
     }
+
+    @RequestMapping("returnmenu")
+        public String returnmenu(Integer vid,Model model) {
+        System.out.println("returnmenu"+vid);
+       Visitor visitor =  visitorService.queryVisitorByVid(vid);
+       model.addAttribute("visitor",visitor);
+        System.out.println(visitor);
+       return "../../menu";
+    }
+
 }

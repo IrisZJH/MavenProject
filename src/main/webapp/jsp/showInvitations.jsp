@@ -28,28 +28,27 @@
     </style>
 </head>
 <body style="background-image:url(${request.pageContext.contextPath}/img/p2.jpg); background-size:100%,100%">
-<p><b>招聘信息</b></p>
+<p><b>面试通知</b></p>
 <table border=2px cellspacing="0">
     <tr>
         <td>id</td>
-        <td>department</td>
-        <td>position</td>
-        <td>describe</td>
+        <td>name</td>
+        <td>text</td>
         <td>date</td>
         <td>aName</td>
     </tr>
-    <c:forEach items="${requestScope.recruitment}" var="recruitment">
+    <c:forEach items="${requestScope.invitations}" var="invitations">
         <tr>
-            <td>${recruitment.id}</td>
-            <td>${recruitment.department.name}</td>
-            <td>${recruitment.department.position.name}</td>
-            <td>${recruitment.describe}</td>
-            <td>${recruitment.date}</td>
-            <td>${recruitment.aName}</td>
-        <td><a href="${pageContext.request.contextPath}/visitor/toudiResum?vid=${requestScope.vid}">投递简历</a></td>
+            <td>${invitations.id}</td>
+            <td>${invitations.name}</td>
+            <td>${invitations.text}</td>
+            <td>${invitations.date}</td>
+            <td>${invitations.aName}</td>
+        <td><a href="${pageContext.request.contextPath}/visitor/acceptInvitation?id=${invitations.id}">确认面试</a></td>
         </tr>
-        <a
     </c:forEach>
-</table>
+    </table>
+<a href="${pageContext.request.contextPath}/visitor/returnmenu?vid=${requestScope.visitor.id}">返回主菜单</a>
+
 </body>
 </html>

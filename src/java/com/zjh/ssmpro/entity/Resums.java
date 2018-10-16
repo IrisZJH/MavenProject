@@ -15,7 +15,7 @@ public class Resums {
     private String advantage;
     private String weakness;
     private int vid;
-    private int type;//默认为0,投递中为1，被查看为2
+    private int type;//默认为0,投递中为1，被查看为2，未通过为3
 
     public Resums() {
     }

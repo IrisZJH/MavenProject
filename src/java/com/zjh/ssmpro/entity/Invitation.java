@@ -8,17 +8,37 @@ import java.util.Date;
 public class Invitation {
     private int id;
     private String name;
+    private int vid;
     private String text;
     private Date date;
     private int type;//0未接受，1接受
+    private String aName;
 
     public Invitation() {
     }
 
-    public Invitation(String name, String text, Date date) {
+    public Invitation(String name, int vid, String text, Date date,String aName) {
         this.name = name;
+        this.vid = vid;
         this.text = text;
         this.date = date;
+        this.aName = aName;
+    }
+
+    public String getaName() {
+        return aName;
+    }
+
+    public void setaName(String aName) {
+        this.aName = aName;
+    }
+
+    public int getVid() {
+        return vid;
+    }
+
+    public void setVid(int vid) {
+        this.vid = vid;
     }
 
     public int getType() {
@@ -66,9 +86,11 @@ public class Invitation {
         return "Invitation{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", vid=" + vid +
                 ", text='" + text + '\'' +
                 ", date=" + date +
                 ", type=" + type +
+                ", aName='" + aName + '\'' +
                 '}';
     }
 }

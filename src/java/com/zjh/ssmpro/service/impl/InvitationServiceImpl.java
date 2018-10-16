@@ -28,13 +28,23 @@ public class InvitationServiceImpl implements InvitationService {
     }
 
     @Override
-    public void updateInvitationByName(String name) {
-        invitationDao.updateInvitationByName(name);
+    public void updateInvitationById(Invitation invitation) {
+        invitationDao.updateInvitationById(invitation);
     }
 
     @Override
     public List<Invitation> queryInvitationByType(int type) {
         return invitationDao.queryInvitationByType(type);
+    }
+
+    @Override
+    public List<Invitation> queryInvitationByVid(int vid) {
+        return invitationDao.queryInvitationByVid(vid);
+    }
+
+    @Override
+    public Invitation queryInvitationById(Integer id) {
+        return invitationDao.queryInvitationById(id);
     }
 
 

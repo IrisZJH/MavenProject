@@ -13,7 +13,7 @@
 <table width='99%' height="100%" border='0' cellspacing='0' cellpadding='0'>
     <tr>
         <td style='padding-left:3px;padding-top:8px' valign="top">
-            您好：管理员 ${requestScope.visitor.name}，您可以有以下操作！
+            您好：员工 ${requestScope.visitor.name}，您可以有以下操作！
             <!-- Item 1 Strat -->
             <dl class='bitem'>
                 <dt onClick='showHide("items1_1")'><b>招聘</b></dt>
@@ -24,8 +24,8 @@
                                 <div class='fllct'><a href="/admin/toRecruitmentPage" target='main'>发布招聘信息</a></div>
                             </div>
                         </li>
-                        <li><a href="/admin/queryResumsByType?type=1" target='main'>查看简历并通知面试</a> </li>
-                        <li><a href="/admin/queryInvitationByType?type=1" target='main'>录用</a> </li>
+                        <li><a href="/visitor/queryResumsByVid?vid=${requestScope.visitor.id}" target='main'>查看简历并通知面试</a> </li>
+                        <li><a href="/visitor/queryResumsByVid?vid=${requestScope.visitor.id}" target='main'>录用</a> </li>
 
                     </ul>
                 </dd>

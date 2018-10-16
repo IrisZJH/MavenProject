@@ -36,8 +36,7 @@
                 <dd style='display:block' class='sitem' id='items2_1'>
                     <ul class='sitemu'>
                         <li><a href='showJianLisForOut.action' target='main'>修改简历</a></li>
-                        <li><a href='showWaifa.action' target='main'>外发简历</a></li>
-                    </ul>
+                        </ul>
                 </dd>
                 </dd>
             </dl>
@@ -48,8 +47,8 @@
                 <dd style='display:block' class='sitem' id='items3_1'>
                     <ul class='sitemu'>
                         <li><a href='/visitor/queryAllRecruitment?vid=${requestScope.visitor.id}' target='main'>查看所有招聘信息</a></li>
-                        <li><a href='showUserSearchZhiWei.action' target='main'>职位搜索</a></li>
-                        <li><a href='showMianshiTongzhi.action' target='main'>面试通知单</a></li>
+                        <li><a href='/visitor/queryInvitationByVid?vid=${requestScope.visitor.id}' target='main'>面试通知单</a></li>
+                        <li><a href='/visitor/queryInvitationByVid?vid=${requestScope.visitor.id}' target='main'>查看已接受的面试</a></li>
                         <li><a href='showShenqingjilu.action' target='main'>职位申请列表</a></li>
                     </ul>
                 </dd>
