@@ -48,7 +48,6 @@
             <td>${recruitment.aName}</td>
         <td><a href="${pageContext.request.contextPath}/visitor/toudiResum?vid=${requestScope.vid}">投递简历</a></td>
         </tr>
-        <a
     </c:forEach>
 </table>
 </body>

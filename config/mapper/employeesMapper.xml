@@ -7,11 +7,9 @@
 		values(#{name},#{password})
 	</insert>
 
-	<select id="queryVisitorByNameAndPassword"  resultType="Visitor">
+	<select id="queryEmployeesByNameAndPassword"  resultType="Employees">
 		select
-		id,
-		name,
-		password
+		*
 		from
 		employees
 		where

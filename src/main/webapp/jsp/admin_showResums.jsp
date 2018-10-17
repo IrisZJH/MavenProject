@@ -51,6 +51,7 @@
             <td>${resums.school}</td>
             <td>${resums.experience}</td>
             <td>${resums.skill}</td>
+            <td>${resums.hobby}</td>
             <td>${resums.advantage}</td>
             <td>${resums.weakness}</td>
             <td><a href="${pageContext.request.contextPath}/admin/toInvitationPage?vid=${resums.vid}">通知面试</a></td>

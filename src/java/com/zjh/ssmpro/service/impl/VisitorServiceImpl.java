@@ -43,4 +43,9 @@ public class VisitorServiceImpl implements VisitorService{
     public List<Visitor> queryVisitorByType(Integer type) {
         return visitorDao.queryVisitorByType(type);
     }
+
+    @Override
+    public void updateVisitorByVid(Visitor visitor) {
+        visitorDao.updateVisitorByVid(visitor);
+    }
 }

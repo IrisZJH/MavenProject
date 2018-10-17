@@ -15,8 +15,9 @@
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/admin/addInvitation" method="post">
-    姓名：<input type="text" name="name"><br>
+    姓名：<input type="text" name="name" value="${requestScope.visitor.name}"><br>
     内容：<textarea rows="5" cols="20" name="text"></textarea><br/>
+    <input type="text" name="vid" value="${requestScope.vid}" hidden><br>
     邀请人：<input type="text" name="aName"><br>
     <input type="submit" value="发送邀请">
 </form>

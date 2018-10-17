@@ -1,13 +1,7 @@
 package com.zjh.ssmpro.handler;
 
-import com.zjh.ssmpro.entity.Invitation;
-import com.zjh.ssmpro.entity.Recruitment;
-import com.zjh.ssmpro.entity.Resums;
-import com.zjh.ssmpro.entity.Visitor;
-import com.zjh.ssmpro.service.InvitationService;
-import com.zjh.ssmpro.service.RecruitmentService;
-import com.zjh.ssmpro.service.ResumsService;
-import com.zjh.ssmpro.service.VisitorService;
+import com.zjh.ssmpro.entity.*;
+import com.zjh.ssmpro.service.*;
 import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +33,8 @@ public class VisitorHandler {
     private InvitationService invitationService;
     @Autowired
     private RecruitmentService recruitmentService;
+    @Autowired
+    private EmployeesService employeesService;
 
     @RequestMapping("regist")
     public String register( ){
@@ -74,11 +70,11 @@ public class VisitorHandler {
                 return "../../index";
             }
         }else{
-            Visitor visitor1 = visitorService.findVisitorByNameAndPassword(visitor.getName(),visitor.getPassword(),visitor.getStatus());
-            if (visitor1!=null){
+             Employees employees = employeesService.findEmployeesByNameAndPassword(visitor.getName(),visitor.getPassword());
+             if (employees!=null){
                 System.out.println("success");
-                model.addAttribute("visitor", visitor1);
-                System.out.println("登陆成功保存visitor:"+visitor1);
+                model.addAttribute("employees", employees);
+                System.out.println("登陆成功保存employees:"+employees);
                 return "admin/adminpage";
             }else {
                 model.addAttribute("str", "账号或密码错误");
@@ -123,25 +119,27 @@ public class VisitorHandler {
     }
 
     @RequestMapping("toResumsPage")
-        public String toResumsPage(Integer id,Visitor visitor,Model model){
+        public String toResumsPage(Integer id,Visitor visitor,Model model) {
         Visitor visitor1 = visitorService.queryVisitorByVid(id);
-        model.addAttribute("visitor",visitor1);
-        List<Resums> resums = resumsService.findResumsByVid(id);
-        if(resums==null) {
+        model.addAttribute("visitor", visitor1);
+        System.out.println(id);
+        Resums resums = resumsService.queryResumByVid(id);
+        System.out.println(resums);
+        if (resums == null) {
             model.addAttribute("visitor", visitor1);
             System.out.println("toResumPage:" + visitor1);
             return "../../jsp/Resums";
-        }else{
-            System.out.println("跳转回menu"+visitor1);
+        } else {
+            System.out.println("跳转回menu" + visitor1);
             return "../../menu";
         }
-        }
+    }
 
 
     @RequestMapping("addResums")
     public String addResums(Resums resums,Model model){
         resumsService.addResums(resums);
-        Visitor visitor = visitorService.findVisitorByName(resums.getName());
+        Visitor visitor = visitorService.queryVisitorByVid(resums.getVid());
         model.addAttribute("visitor",visitor);
         return "../../menu";
     }

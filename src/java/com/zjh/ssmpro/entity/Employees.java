@@ -11,6 +11,11 @@ public class Employees {
     public Employees() {
     }
 
+    public Employees(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }

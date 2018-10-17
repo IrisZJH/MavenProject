@@ -17,5 +17,5 @@ public interface VisitorDao {
     public Visitor queryVisitorByName(String name);
     public Visitor queryVisitorByVid(Integer vid);
     public List<Visitor> queryVisitorByType(Integer type);
-
+    public void updateVisitorByVid(Visitor visitor);
 }

@@ -1,63 +1,62 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%--
+  Created by IntelliJ IDEA.
+  User: 18221
+  Date: 2018/10/12
+  Time: 12:35
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>menu</title>
-    <link rel="stylesheet" href="skin/css/base.css" type="text/css" />
-    <link rel="stylesheet" href="skin/css/menu.css" type="text/css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <script language='javascript'>var curopenItem = '1';</script>
-    <script language="javascript" type="text/javascript" src="skin/js/frame/menu.js"></script>
-    <base target="main" />
-</head>
-<body target="main">
-<table width='99%' height="100%" border='0' cellspacing='0' cellpadding='0'>
-    <tr>
-        <td style='padding-left:3px;padding-top:8px' valign="top">
-            您好：管理员 ${requestScope.visitor.name}，您可以有以下操作！
-            <!-- Item 1 Strat -->
-            <dl class='bitem'>
-                <dt onClick='showHide("items1_1")'><b>招聘</b></dt>
-                <dd style='display:block' class='sitem' id='items1_1'>
-                    <ul class='sitemu'>
-                        <li>
-                            <div class='items'>
-                                <div class='fllct'><a href="/admin/toRecruitmentPage" target='main'>发布招聘信息</a></div>
-                            </div>
-                        </li>
-                        <li><a href="/visitor/queryResumsByVid?vid=${requestScope.visitor.id}" target='main'>查看简历并通知面试</a> </li>
-                        <li><a href="/visitor/queryResumsByVid?vid=${requestScope.visitor.id}" target='main'>录用</a> </li>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Title</title>
+    <script src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 
-                    </ul>
-                </dd>
-            </dl>
-            <!-- Item 1 End -->
-            <!-- Item 2 Strat -->
-            <%--<dl class='bitem'>--%>
-            <%--<dt onClick='showHide("items2_1")'><b>简历操作</b></dt>--%>
-            <%--<dd style='display:block' class='sitem' id='items2_1'>--%>
-            <%--<ul class='sitemu'>--%>
-            <%--<li><a href='showJianLisForOut.action' target='main'>修改简历</a></li>--%>
-            <%--<li><a href='showWaifa.action' target='main'>外发简历</a></li>--%>
-            <%--</ul>--%>
-            <%--</dd>--%>
-            <%--</dd>--%>
-            <%--</dl>--%>
-            <!-- Item 2 End -->
-            <!-- Item 3 Strat -->
-            <%--<dl class='bitem'>--%>
-            <%--<dt onClick='showHide("items3_1")'><b>工作机会</b></dt>--%>
-            <%--<dd style='display:block' class='sitem' id='items3_1'>--%>
-            <%--<ul class='sitemu'>--%>
-            <%--<li><a href='showUserSearchZhiWei.action' target='main'>职位搜索</a></li>--%>
-            <%--<li><a href='showMianshiTongzhi.action' target='main'>面试通知单</a></li>--%>
-            <%--<li><a href='showShenqingjilu.action' target='main'>职位申请列表</a></li>--%>
-            <%--</ul>--%>
-            <%--</dd>--%>
-            <%--</dd>--%>
-            <%--</dl>--%>
-            <!-- Item 3 End -->
-        </td>
-    </tr>
-</table>
+    <style type="text/css">
+        #d{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin:-150px 0 0 -100px;
+            width:200px;
+            height:100px;
+
+
+        }
+    </style>
+</head>
+<body style="background-image:url(${request.pageContext.contextPath}/img/p2.jpg); background-size:100%,100%">
+<p><b>新建简历</b></p>
+<form action="/visitor/addResums" method="post">
+    姓名：<input type="text" name="name"><br>
+    性别：<input type="radio" name="sex" checked="checked" value="男">男
+    &nbsp;<input name="sex" type="radio" value="女">女<br>
+    年龄：<input type="text"  name="age"><br>
+    学历：<select name="school">
+    <option>小学</option>
+    <option>初中</option>
+    <option>中专</option>
+    <option>高中</option>
+    <option>大专</option>
+    <option>本科</option>
+    <option>硕士</option>
+    <option>博士</option>
+</select><br/>
+    工作年限：<select name="experience">
+    <option>无经验</option>
+    <option>一年以下</option>
+    <option>一年以上</option>
+    <option>两年以上</option>
+    <option>三年以上</option>
+    <option>五年以上</option>
+    <option>十年以上</option>
+</select><br/>
+
+    技能特长：<textarea rows="5" cols="20" name="skill"></textarea><br>
+    兴趣爱好：<textarea rows="5" cols="20" name="hobby"></textarea><br>
+    优点：<textarea rows="5" cols="20" name="advantage"></textarea><br/>
+    缺点：<textarea rows="5" cols="20" name="weakness"></textarea><br/>
+    <input type="hidden" name="vid" value="${requestScope.visitor.id}">
+    <input type="submit" value="保存并返回"></form>
 </body>
 </html>

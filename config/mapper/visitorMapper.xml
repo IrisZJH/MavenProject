@@ -50,11 +50,14 @@
 		where
 		id=#{vid}
 	</select>
-	<insert id="insertResums" parameterType="Resums">
-		insert into
-		resums(name,sex,age,school,experience,skill,hobby,advantage,weakness,vid)
-		values(#{name},#{sex},#{age},#{school},#{experience},#{skill},#{hobby},#{advantage},#{weakness},#{vid})
-	</insert>
+	<!--<insert id="insertResums" parameterType="Resums">-->
+		<!--insert into-->
+		<!--resums(name,sex,age,school,experience,skill,hobby,advantage,weakness,vid)-->
+		<!--values(#{name},#{sex},#{age},#{school},#{experience},#{skill},#{hobby},#{advantage},#{weakness},#{vid})-->
+	<!--</insert>-->
+	<update id="updateVisitorByVid" parameterType="Resums">
+		update visitors set name=#{name},password=#{password},status=#{status} where id=#{id}
+	</update>
 </mapper>
 
 

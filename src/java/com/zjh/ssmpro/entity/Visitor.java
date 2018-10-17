@@ -7,7 +7,7 @@ public class Visitor {
     private int id;
     private String name;
     private String password;
-    private int status;
+    private int status;//0,1,2
 
     public Visitor() {
     }

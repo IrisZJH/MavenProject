@@ -28,7 +28,7 @@
 <body style="background-image:url(${request.pageContext.contextPath}/img/p2.jpg); background-size:100%,100%">
 <p><b>新建简历</b></p>
 <form action="/visitor/addResums" method="post">
-    姓名：<input type="text" name="name"><br>
+    姓名：<input type="text" name="name" value="${requestScope.visitor.name}"><br>
     性别：<input type="radio" name="sex" checked="checked" value="男">男
     &nbsp;<input name="sex" type="radio" value="女">女<br>
     年龄：<input type="text"  name="age"><br>

@@ -113,18 +113,19 @@ public class AdminHandler {
         resums.setType(2);
         resumsService.updateResumsByVid(resums);
         System.out.println("查看并通知面试后简历type设为2"+resums);
+        Visitor visitor = visitorService.queryVisitorByVid(vid);
         model.addAttribute("vid",vid);
+        model.addAttribute("visitor",visitor);
         return("../../jsp/invitation");
     }
 
-    //面试邀请增查
+    //面试邀请增加
     @RequestMapping("addInvitation")
     public String addInvitation(Invitation invitation,Model model){
         System.out.println("addInvitation");
         String aName = invitation.getaName();
         Visitor visitor = visitorService.findVisitorByName(aName);
         System.out.println("邀请人"+aName);
-        invitation.setVid(32);
         invitation.setDate(new Date(System.currentTimeMillis()));
         invitationService.addInvitation(invitation);
         System.out.println(invitation);
@@ -146,6 +147,8 @@ public class AdminHandler {
     @RequestMapping("hireEmployee")
     public String hireEmployee(int vid,Employees employees){
         Visitor visitor = visitorService.queryVisitorByVid(vid);
+        visitor.setStatus(2);
+        visitorService.updateVisitorByVid(visitor);
         employees.setName(visitor.getName());
         employees.setPassword(visitor.getPassword());
         employeesService.insertEmployees(employees);

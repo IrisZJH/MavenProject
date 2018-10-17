@@ -17,33 +17,33 @@
     -->
 
     <script type="text/javascript">
-        $(function(){
-            $("#name").blur(function() {
-                var value = $("#name").val();
-                verifyUserName(value);
-            });
-            $("#name").focus(function() {
-                $("#userNameErr").text("");
-            });
-        });
-
-        function verifyUserName(userName){
-            var value = $("#name").val();
-            $.ajax({
-                type:"GET",
-                cache:false,
-                async:false,
-                url:"/visitor/verifyUserName",
-                data:{method:"verifyUserName",userName:value},
-                dataType:"json",
-                success:function(result){
-                    if(result.ifreg =="true"){
-                        $("#userNameErr").text("该用户名已被注册！");
-                    }
-                }
-            });
-        }
-        <%--$(document).ready(function(){--%>
+//        $(function(){
+//            $("#name").blur(function() {
+//                var value = $("#name").val();
+//                verifyUserName(value);
+//            });
+//            $("#name").focus(function() {
+//                $("#userNameErr").text("");
+//            });
+//        });
+//
+//        function verifyUserName(userName){
+//            var value = $("#name").val();
+//            $.ajax({
+//                type:"GET",
+//                cache:false,
+//                async:false,
+//                url:"/visitor/verifyUserName",
+//                data:{method:"verifyUserName",userName:value},
+//                dataType:"json",
+//                success:function(result){
+//                    if(result.ifreg =="true"){
+//                        $("#userNameErr").text("该用户名已被注册！");
+//                    }
+//                }
+//            });
+//        }
+        $(document).ready(function(){
             <%--//当鼠标移开name的控件时就执行--%>
 <%--//            $("#name").blur(function() {--%>
 
@@ -67,34 +67,34 @@
 
             <%--&lt;%&ndash;});&ndash;%&gt;--%>
 
-            <%--$("#pwd").blur( function() {--%>
-                <%--$("#pwdNote").css("color","green");--%>
-                <%--$("#pwdNote").text("该密码可以使用!");--%>
-            <%--});--%>
+            $("#pwd").blur( function() {
+                $("#pwdNote").css("color","green");
+                $("#pwdNote").text("该密码可以使用!");
+            });
 
-            <%--$("#pwd2").blur( function() {--%>
-                <%--if($("#pwd2").val()!=$("#pwd").val()){--%>
-                    <%--$("#pwd2Note").css("color","red");--%>
-                    <%--$("#pwd2Note").text("两次密码不一致!");--%>
-                    <%--return;--%>
-                <%--}else{--%>
-                    <%--$("#pwd2Note").css("color","green");--%>
-                    <%--$("#pwd2Note").text("两次密码一致!");--%>
-                    <%--if($("#nameNote").html()=="该用户名可以使用!" ){--%>
-                        <%--$("#btnRegin").attr("disabled", false);--%>
-                    <%--}--%>
-                <%--}--%>
-            <%--});--%>
+            $("#pwd2").blur( function() {
+                if($("#pwd2").val()!=$("#pwd").val()){
+                    $("#pwd2Note").css("color","red");
+                    $("#pwd2Note").text("两次密码不一致!");
+                    return;
+                }else{
+                    $("#pwd2Note").css("color","green");
+                    $("#pwd2Note").text("两次密码一致!");
+                    if($("#nameNote").html()=="该用户名可以使用!" ){
+                        $("#btnRegin").attr("disabled", false);
+                    }
+                }
+            });
 
-            <%--$("#pwd").blur(function(){--%>
-                <%--if($("#pwd").val()==""){--%>
-                    <%--$("#pwdNote").css("color","red");--%>
-                    <%--$("#pwdNote").text("密码不能为空!");--%>
-                    <%--alter("密码不能为空")--%>
-                <%--}--%>
-            <%--});--%>
+            $("#pwd").blur(function(){
+                if($("#pwd").val()==""){
+                    $("#pwdNote").css("color","red");
+                    $("#pwdNote").text("密码不能为空!");
+                    alter("密码不能为空")
+                }
+            });
 
-        <%--});--%>
+        });
     </script>
     <style type="text/css">
         #all{
