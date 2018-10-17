@@ -8,7 +8,7 @@ import java.util.Date;
 public class Position {
     private int id;
     private String name;
-    private Department department;
+    private int Did;
     private Date date;
 
     public Position() {
@@ -30,12 +30,12 @@ public class Position {
         this.name = name;
     }
 
-    public Department getDepartment() {
-        return department;
+    public int getDid() {
+        return Did;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setDid(int did) {
+        Did = did;
     }
 
     public Date getDate() {
@@ -51,7 +51,7 @@ public class Position {
         return "Position{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", department=" + department +
+                ", Did=" + Did +
                 ", date=" + date +
                 '}';
     }

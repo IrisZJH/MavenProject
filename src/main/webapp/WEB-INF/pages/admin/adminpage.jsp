@@ -32,29 +32,30 @@
             </dl>
             <!-- Item 1 End -->
             <!-- Item 2 Strat -->
-            <%--<dl class='bitem'>--%>
-                <%--<dt onClick='showHide("items2_1")'><b>简历操作</b></dt>--%>
-                <%--<dd style='display:block' class='sitem' id='items2_1'>--%>
-                    <%--<ul class='sitemu'>--%>
-                        <%--<li><a href='showJianLisForOut.action' target='main'>修改简历</a></li>--%>
-                        <%--<li><a href='showWaifa.action' target='main'>外发简历</a></li>--%>
-                    <%--</ul>--%>
-                <%--</dd>--%>
-                <%--</dd>--%>
-            <%--</dl>--%>
+            <dl class='bitem'>
+                <dt onClick='showHide("items2_1")'><b>职位部门管理</b></dt>
+                <dd style='display:block' class='sitem' id='items2_1'>
+                    <ul class='sitemu'>
+                        <%--增删改查--%>
+                        <li><a href='/admin/queryAllDepartment' target='main'>部门管理</a></li>
+                        <li><a href='showWaifa.action' target='main'>职位管理</a></li>
+                    </ul>
+                </dd>
+                </dd>
+            </dl>
             <!-- Item 2 End -->
             <!-- Item 3 Strat -->
-            <%--<dl class='bitem'>--%>
-                <%--<dt onClick='showHide("items3_1")'><b>工作机会</b></dt>--%>
-                <%--<dd style='display:block' class='sitem' id='items3_1'>--%>
-                    <%--<ul class='sitemu'>--%>
-                        <%--<li><a href='showUserSearchZhiWei.action' target='main'>职位搜索</a></li>--%>
-                        <%--<li><a href='showMianshiTongzhi.action' target='main'>面试通知单</a></li>--%>
-                        <%--<li><a href='showShenqingjilu.action' target='main'>职位申请列表</a></li>--%>
-                    <%--</ul>--%>
-                <%--</dd>--%>
-                <%--</dd>--%>
-            <%--</dl>--%>
+            <dl class='bitem'>
+                <dt onClick='showHide("items3_1")'><b></b></dt>
+                <dd style='display:block' class='sitem' id='items3_1'>
+                    <ul class='sitemu'>
+                        <li><a href='showUserSearchZhiWei.action' target='main'>职位搜索</a></li>
+                        <li><a href='showMianshiTongzhi.action' target='main'>面试通知单</a></li>
+                        <li><a href='showShenqingjilu.action' target='main'>职位申请列表</a></li>
+                    </ul>
+                </dd>
+                </dd>
+            </dl>
             <!-- Item 3 End -->
         </td>
     </tr>

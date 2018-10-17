@@ -8,6 +8,14 @@
 		position
 	</select>
 
+	<select id="queryPositionByDid" parameterType="Integer" resultType="Position">
+		select
+		*
+		from
+		position
+		where
+		did=#{Did}
+	</select>
 	<insert id="insertPosition" parameterType="Position">
 		insert into
 		position(name,department_id,date)

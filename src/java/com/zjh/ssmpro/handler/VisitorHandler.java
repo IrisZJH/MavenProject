@@ -10,12 +10,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import javax.servlet.http.HttpServletRequest;
 import javax.jws.WebParam;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -35,12 +36,42 @@ public class VisitorHandler {
     private RecruitmentService recruitmentService;
     @Autowired
     private EmployeesService employeesService;
+    @Autowired
+    private HttpServletRequest request;
 
     @RequestMapping("regist")
     public String register( ){
         System.out.println("regist");
         return "/visitor/regist";
     }
+
+//    // 注册判断用户名是否存在
+//    @RequestMapping("registeryz")
+//    public Visitor register() {
+//        System.out.println("进入验证方法");
+//        Visitor user = new Visitor();
+//        String name = request.getParameter("name");
+//        System.out.println(name);
+//        user = visitorService.findVisitorByName(name);
+//        return user;
+//    }
+//
+//    // 注册用户
+//    @RequestMapping("register")
+//    public Visitor Userregister() {
+//        System.out.println("进入注册方法");
+//        Visitor user = new Visitor();
+//        System.out.println(request.getParameter("name"));
+//        user.setName(request.getParameter("name"));
+//        user.setPassword(request.getParameter("userpassword"));
+//         visitorService.addVisitor(user);
+//        Visitor visitor =visitorService.findVisitorByName(user.getName());
+//        if (visitor != null) {
+//            return visitor;
+//        } else {
+//            return null;
+//        }
+//    }
     @RequestMapping("login")
     public String login(Visitor visitor,Model model){
         int status = visitor.getStatus();
@@ -82,6 +113,7 @@ public class VisitorHandler {
             }
         }
     }
+
     @RequestMapping("addVisitor")
     public String addVisitor(Visitor visitor){
        Visitor visitor1 =  visitorService.findVisitorByName(visitor.getName());

@@ -2,11 +2,15 @@ package com.zjh.ssmpro.handler;
 
 import com.zjh.ssmpro.entity.*;
 import com.zjh.ssmpro.service.*;
+import net.sf.json.JSONArray;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -33,11 +37,47 @@ public class AdminHandler {
     @Autowired
     private EmployeesService employeesService;
 
+//    /**
+//     * 查询所有部门
+//     *
+//     * @return
+//     */
+    @RequestMapping("queryDepartment")
+    public String queryDepartment() {
+        System.out.println("queryDepartment");
+        List<Department> departments = departmentService.queryAllDepartment();
+        System.out.println(departments);
+        return "SUCCESS";
+    }
+    /**
+     * 查询对应部门的职位
+     *
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("queryPosition")
+    public void queryPosition(Integer Did,HttpServletResponse response) throws IOException {
+        List<Position> positions = positionService.queryPositionByDid(Did);
+        //list转换为json
+        JSONArray json = JSONArray.fromObject(positions);
+        response.getWriter().print(json.toString());
+        response.getWriter().flush();
+        response.getWriter().close();
+    }
+//输入部门信息
+    @RequestMapping("inputDepartment")
+    public String inputDepartment(){
+        System.out.println("toinputDepartment");
+        return "../../jsp/inputDepartment";
+    }
+
     //部门增删改查
-    @RequestMapping("addDepartmenty")
-    public void addDepartment(Department department){
+    @RequestMapping("addDepartment")
+    public String  addDepartment(Department department){
+        System.out.println("addDepartment");
         department.setDate(new Date(System.currentTimeMillis()));
         departmentService.insertDepartment(department);
+        return ("forward:queryAllDepartment");
     }
 
     @RequestMapping("deleteDepartment")
@@ -51,14 +91,17 @@ public class AdminHandler {
     }
 
     @RequestMapping("queryAllDepartment")
-    public List<Department> queryAllDepartment(){
+    public String  queryAllDepartment(Model model){
+        System.out.println("queryAllDepartment");
         List<Department> departments = departmentService.queryAllDepartment();
-        return departments;
+        model.addAttribute("departments",departments);
+        return "../../jsp/showAllDepartment";
     }
     @RequestMapping("queryDepartmentById")
     public void queryDepartmentrById(Integer id){
         departmentService.queryDepartmentById(id);
     }
+
 
     @RequestMapping("toRecruitmentPage")
     public String toRecruitmentPage(Integer vid,Visitor visitor,Model model){
@@ -67,7 +110,7 @@ public class AdminHandler {
         System.out.println("toResumPage:"+visitor);
         List<Department> departments = departmentService.queryAllDepartment();
         model.addAttribute("departments", departments);
-        System.out.println(departments);
+        System.out.println("toRecruitmentPage:"+departments);
         return "../../jsp/recruitment";
     }
 

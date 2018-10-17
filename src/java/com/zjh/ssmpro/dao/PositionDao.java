@@ -16,4 +16,5 @@ public interface PositionDao {
     public List<Position> queryAllPosition();
     public Position queryPositionById(Integer id);
     public void updatePositionById(Integer id);
+    public List<Position> queryPositionByDid(Integer Did);
 }

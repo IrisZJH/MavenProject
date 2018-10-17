@@ -44,4 +44,9 @@ public class PositionServiceImpl implements PositionService {
     public void updatePositionById(Integer id) {
         positionDao.updatePositionById(id);
     }
+
+    @Override
+    public List<Position> queryPositionByDid(Integer Did) {
+        return positionDao.queryPositionByDid(Did);
+    }
 }
