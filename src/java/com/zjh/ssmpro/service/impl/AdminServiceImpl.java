@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {
-    @Autowired
-    private AdminDao adminDao;
+//    @Autowired
+//    private AdminDao adminDao;
 
 }

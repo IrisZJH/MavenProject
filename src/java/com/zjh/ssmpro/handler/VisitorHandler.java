@@ -15,9 +15,11 @@ import javax.jws.WebParam;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,7 +39,9 @@ public class VisitorHandler {
     @Autowired
     private EmployeesService employeesService;
     @Autowired
-    private HttpServletRequest request;
+    private DepartmentService departmentService;
+    @Autowired
+    private  PositionService positionService ;
 
     @RequestMapping("regist")
     public String register( ){
@@ -45,35 +49,8 @@ public class VisitorHandler {
         return "/visitor/regist";
     }
 
-//    // 注册判断用户名是否存在
-//    @RequestMapping("registeryz")
-//    public Visitor register() {
-//        System.out.println("进入验证方法");
-//        Visitor user = new Visitor();
-//        String name = request.getParameter("name");
-//        System.out.println(name);
-//        user = visitorService.findVisitorByName(name);
-//        return user;
-//    }
-//
-//    // 注册用户
-//    @RequestMapping("register")
-//    public Visitor Userregister() {
-//        System.out.println("进入注册方法");
-//        Visitor user = new Visitor();
-//        System.out.println(request.getParameter("name"));
-//        user.setName(request.getParameter("name"));
-//        user.setPassword(request.getParameter("userpassword"));
-//         visitorService.addVisitor(user);
-//        Visitor visitor =visitorService.findVisitorByName(user.getName());
-//        if (visitor != null) {
-//            return visitor;
-//        } else {
-//            return null;
-//        }
-//    }
     @RequestMapping("login")
-    public String login(Visitor visitor,Model model){
+    public String login(Visitor visitor, HttpSession session, Model model){
         int status = visitor.getStatus();
         model.addAttribute("visitor", visitor);
         System.out.println(status);
@@ -93,6 +70,24 @@ public class VisitorHandler {
             Visitor visitor1 = visitorService.findVisitorByNameAndPassword(visitor.getName(),visitor.getPassword(),visitor.getStatus());
             if (visitor1!=null){
                 System.out.println("success");
+
+                List<Department> departmentList = departmentService.queryAllDepartment();
+                session.setAttribute("departmentList",departmentList);
+
+                List<Position> positionList = positionService.queryAllPosition();
+                session.setAttribute("positionList",positionList);
+
+                List<Recruitment> recruitmentList=recruitmentService.queryAllRecruitment();
+                session.setAttribute("recruitmentList",recruitmentList);
+                List<Employees> employeeList1=employeesService.queryAllEmployees();
+                List<Employees> employeeList=new ArrayList<>();
+                for (int i=0;employeeList1.size()>i;i++){
+                    if (employeeList1.get(i).getStatus()==0){
+                        employeeList.add(employeeList1.get(i));
+                    }
+                }
+                session.setAttribute("employeeList",employeeList);
+
                 model.addAttribute("visitor", visitor1);
                 System.out.println("登陆成功保存visitor:"+visitor1);
                 return "admin/adminpage";
@@ -115,27 +110,17 @@ public class VisitorHandler {
     }
 
     @RequestMapping("addVisitor")
-    public String addVisitor(Visitor visitor){
+    public String addVisitor(Visitor visitor,Model model){
        Visitor visitor1 =  visitorService.findVisitorByName(visitor.getName());
        if(visitor1==null) {
            visitorService.addVisitor(visitor);
            return "../../index";
        }else {
+          model.addAttribute("str","用户名已存在");
            return "visitor/regist";
        }
     }
 
-//    @RequestMapping("findVisitorByNameAndPassword")
-//    public String findVisitorByNameAndPassword(String name,String password,ModelMap model){
-//        Visitor visitor = visitorService.findVisitorByNameAndPassword(name,password);
-//        if (visitor!=null){
-//            System.out.println("success");
-//            return "/visitor/visitorpage";
-//        }else {
-//            model.addAttribute("str","账号或密码错误");
-//            return "forward:visitor/regist";
-//        }
-//    }
     @RequestMapping("verifyUserName")
     public String verifyUserName(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

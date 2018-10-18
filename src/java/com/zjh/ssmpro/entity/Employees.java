@@ -7,6 +7,8 @@ public class Employees {
     public int id;
     public String name;
     public String password;
+    public int status;
+
 
     public Employees() {
     }
@@ -14,6 +16,14 @@ public class Employees {
     public Employees(String name, String password) {
         this.name = name;
         this.password = password;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getId() {

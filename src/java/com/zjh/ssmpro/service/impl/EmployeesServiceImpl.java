@@ -6,6 +6,8 @@ import com.zjh.ssmpro.service.EmployeesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by 18221 on 2018/10/16.
  */
@@ -21,5 +23,10 @@ public class EmployeesServiceImpl implements EmployeesService {
     @Override
     public Employees findEmployeesByNameAndPassword(String name, String password) {
         return employeesDao.queryEmployeesByNameAndPassword(name,password);
+    }
+
+    @Override
+    public List<Employees> queryAllEmployees() {
+        return employeesDao.queryAllEmployees();
     }
 }

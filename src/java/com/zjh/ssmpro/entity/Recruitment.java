@@ -7,21 +7,16 @@ import java.util.Date;
  */
 public class Recruitment {
     private int id;
+    private String name;
+    private String address;
+    private Date date;
+    private String describe;
     private Department department;//部门
     private Position position;//职位
-    private String describe;
-    private Date date;
-    private String aName;
+    private Integer state;
+
 
     public Recruitment() {
-    }
-
-    public String getaName() {
-        return aName;
-    }
-
-    public void setaName(String aName) {
-        this.aName = aName;
     }
 
     public int getId() {
@@ -30,6 +25,38 @@ public class Recruitment {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 
     public Department getDepartment() {
@@ -48,31 +75,11 @@ public class Recruitment {
         this.position = position;
     }
 
-    public String getDescribe() {
-        return describe;
+    public Integer getState() {
+        return state;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "Recruitment{" +
-                "id=" + id +
-                ", department=" + department +
-                ", position=" + position +
-                ", describe='" + describe + '\'' +
-                ", date=" + date +
-                ", aName='" + aName + '\'' +
-                '}';
+    public void setState(Integer state) {
+        this.state = state;
     }
 }

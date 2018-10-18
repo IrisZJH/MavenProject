@@ -33,7 +33,7 @@
     <tr>
         <td>id</td>
         <td>name</td>
-        <td>其他操作</td>
+        <td colspan="3">其他操作</td>
     </tr>
     <c:forEach items="${requestScope.departments}" var="departments">
         <tr>

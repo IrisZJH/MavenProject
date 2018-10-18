@@ -12,7 +12,9 @@ import java.util.List;
 public interface DepartmentDao {
     public void insertDepartment(Department department);
     public void deleteDepartmentById(Integer id);
+    public void  updateDepartmentById(Integer id);
     public List<Department> queryAllDepartment();
     public Department queryDepartmentById(Integer id);
-    public void updateDepartmentrById(Integer id);
+    public Department queryDepartmentByPid(Integer id);
+    public Department queryDepartmentBydname(String dname);
 }

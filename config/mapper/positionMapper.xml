@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.zjh.ssmpro.dao.PositionDao">
-	<select id="queryAllPosition" resultType="Position">
-		select
-		*
-		from
-		position
+	<resultMap id="postMap" type="Post">
+		<id property="pid" column="pid"/>
+		<result property="pname" column="pname"/>
+
+		<association property="department" javaType="Department">
+			<id property="did" column="did"/>
+			<result property="dname" column="dname"/>
+		</association>
+	</resultMap>
+	<select id="queryAllPosition" resultMap="postMap">
+		 select position.*,department.* from position,department where position.did=department.did
 	</select>
 
-	<select id="queryPositionByDid" parameterType="Integer" resultType="Position">
-		select
-		*
-		from
-		position
-		where
-		did=#{Did}
-	</select>
+	<!--<select id="queryPositionByDid" parameterType="Integer" resultType="Position">-->
+		<!--select-->
+		<!--*-->
+		<!--from-->
+		<!--position-->
+		<!--where-->
+		<!--did=#{did}-->
+	<!--</select>-->
 	<insert id="insertPosition" parameterType="Position">
 		insert into
-		position(name,department_id,date)
-		values(#{name},#{demartment.id},#{date})
+		position(pname,did,date)
+		values(#{name},#{demartment.did},#{date})
 	</insert>
+
 	<delete id="deletePositionById" parameterType="int">
-		delete from position where id=#{id}
+		delete from position where pid=#{pid}
 	</delete>
 
-	<select id="queryPositionById" resultType="Position">
-		select
-		*
-		from
-		position p,department d
-		where
-		p.id = d.department_id
-		AND
-		p.id =#{id}
+	<select id="queryPositionById" resultMap="postMap">
+		 select postion.*,department.* from position,department where position.did=department.did and pid=#{pid}
 	</select>
 
-	<update id="updatePositionById" parameterType="Position">
-		update position set name=#{name},department_id=#{department.id} where id=#{id}
+	<update id="updatePositionByPid" parameterType="Position">
+		update position set pname=#{pname} where pid=#{pid}
 	</update>
+	<select id="getPositionByPname" parameterType="string" resultMap="postMap">
+		select position.*,employees.* from position,employees where
+		pname = #{pname}
+	</select>
 </mapper>
 
 

@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.zjh.ssmpro.dao.DepartmentDao">
+	<resultMap id="deptMap" type="Department">
+		<id property="did" column="did"/>
+		<result property="dname" column="dname"/>
+
+		<collection property="postSet" ofType="Position">
+			<id property="pid" column="pid"/>
+			<result property="pname" column="pname"/>
+		</collection>
+	</resultMap>
 	<insert id="insertDepartment" parameterType="Department">
 		insert into
-		department(name)
-		values(#{name})
+		department(dname)
+		values(#{dname})
 	</insert>
-	<select id="queryAllDepartment" resultType="Department">
+	<select id="queryAllDepartment" resultMap="deptMap">
 		select
 		*
 		from
 		department
 	</select>
 
-	<select id="queryDepartmentById" resultType="Department">
-		select
-		d.id,
-		d,name
-		p.id "position.id",
-		p.name "position.name"
-		from
-		department d,position p
-		where
-		p.department_id = d.id
-		AND
-		d.id=#{id}
-
+	<select id="queryDepartmentById" parameterType="int" resultMap="deptMap">
+		select department.* from department where department.did=#{did}
 	</select>
 
 	<update id="updateDepartmentById" parameterType="Department">
 		update department set name=#{name} where id=#{id}
 	</update>
+	<select id="queryDepartmentByPid" parameterType="int" resultMap="deptMap">
+		select department.*,position.* from department,position where department.did=position.did and position.pid= #{pid}
+	</select>
+	<select id="queryDepartmentBydname" parameterType="string" resultMap="deptMap">
+		select department.*,position.* from department,position where department.did=position.did and department.dname= #{dname}
+	</select>
 </mapper>
 
 

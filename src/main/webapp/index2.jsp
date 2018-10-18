@@ -1,97 +1,166 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 18221
-  Date: 2018/10/12
-  Time: 9:16
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %><html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
-    <title>Insert title here</title>
-    <script type="text/javascript">
-        window.onload = function ajaxSend() {
-            		alert("asd");
-            $.ajax({
-                type : "post",// 指定是post还是get
-                //data : "username=" + username + "&userpass=" + userpass,//发送到服务器的数据
-                url : "${pageContext.request.contextPath}admin/queryDepartment",//发送请求的地址
-                dataType : "json",
-                error : function(err) {//如果确定能正确运行,可不写
-                    alert(err.code);
-                },
-                success : ajaxSendCallBack
-            })
-        }
-        function ajaxSendCallBack(data) {
-            //alert(data[0].name);
-            for ( var i = 0; i < data.length; i++) {
-                var op = document.createElement("option");//创建一个指名名称元素
-                op.value = data[i].name;//设置op的实际值为当前的省份名称
-                var textNode = document.createTextNode(data[i].name);//创建文本节点
-                op.appendChild(textNode);//把文本子节点添加到op元素中，指定其显示值
-
-                document.getElementById("p").appendChild(op);
-            }
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>管理员系统</title>
+    <style>
+        *{margin:0;padding:0;}
+        a{text-decoration:none;color:#666;}
+        body{font-family:Verdana,SimSun;font-size:17px;color:#666;text-align:center;background:#EEE; background-image: url("images/beijin.jpg");background-size:100%;}
+        li{list-style:none;}
+        #box{width:982px;margin:35px auto 55PX auto;text-align:center;background:#A33236;}
+        #nav{width:720px;height:30px;margin:-15px auto;line-height:30px;}
+        #nav a{display:block;width:90px;height:30px;text-align:center;color:#FFF;}
+        #nav li{float:left;}
+        #nav li ul{width:130px;display:none;position:absolute;margin-left:-20px;}
+        #nav li ul li{clear:both;}
+        #nav li ul a{width:130px;border-top:1px solid #FFF;text-align:center;background:#A33236;-webkit-transition:all 0.5s ease;-moz-transition:all 0.5s ease;transition:all 0.5s ease;}
+        #nav li ul li a:hover{background:#FFF;color:#A33236;}
+        a{display:block;width:104px;height:34px;text-align:center;color:#FFF;}
+    </style>
+    <script >
+        /*-----显示子菜单-----*/
+        function display(li) {
+            var subNav = li.getElementsByTagName("ul")[0];
+            subNav.style.display = "block";
         }
 
-        function position() {
-            //alert("asd");
-
-            var departmentname = $("#p").val();
-
-            $.ajax({
-                type : "post",// 指定是post还是get
-                data : "department.name=" + departmentname,//发送到服务器的数据
-                url : "${pageContext.request.contextPath}admin/queryPosition",//发送请求的地址
-                dataType : "json",
-                error : function(err) {//如果确定能正确运行,可不写
-                    alert(err.code);
-                },
-                success : ajaxSendCallBackcity
-            })
-        }
-
-        function ajaxSendCallBackcity(data) {
-            //如果是jsonArray这样返回
-            //alert(data[0].name);
-            //返回json结果
-            /*
-             把select中的所有option移除（除了请选择）
-             */
-            var citySelect = document.getElementById("c");
-            // 获取其所有子元素
-            var optionEleList = citySelect.getElementsByTagName("option");
-            // 循环遍历每个option元素，然后在citySelect中移除
-            while (optionEleList.length > 1) {//子元素的个数如果大于1就循环，等于1就不循环了！
-                citySelect.removeChild(optionEleList[1]);//总是删除1下标，因为1删除了，2就变成1了！
-            }
-
-            for ( var i = 0; i < data.length; i++) {
-                var op = document.createElement("option");//创建一个指名名称元素
-                op.value = data[i].name;//设置op的实际值为当前的省份名称
-                var textNode = document.createTextNode(data[i].name);//创建文本节点
-                op.appendChild(textNode);//把文本子节点添加到op元素中，指定其显示值
-
-                document.getElementById("c").appendChild(op);
-            }
+        /*-----隐藏子菜单-----*/
+        function hide(li) {
+            var subNav = li.getElementsByTagName("ul")[0];
+            subNav.style.display = "none";
         }
     </script>
+    <style type="text/css">
+
+        .list{
+            font-size: 15px;
+            color: brown;
+        }
+
+    </style>
 </head>
 <body>
-<h1>二级联动</h1>
-<%--<select name="department" id="p" onchange="position()">--%>
-    <%--<option>===请选择部门===</option>--%>
-<%--</select>--%>
+<div id="box">
+    <div align="right">
+        <ul>
+            <li><a href="login.jsp">退出当前用户</a></li>
+        </ul>
+    </div>
+    <div id="nav">
+        <ul>
+            <li onmouseover="display(this)" onmouseout="hide(this)">
+                <a href="javascript:;">部门管理</a>
+                <ul>
+                    <li><a href="addDept.jsp">增加部门</a></li>
+                    <li><a href="getAlldept.action">查看部门</a></li>
+                    <li><a href="getAlldept.action">删除部门</a></li>
+                    <li><a href="getAlldept.action">更改部门</a></li>
+                </ul>
+            </li>
+            <li onmouseover="display(this)" onmouseout="hide(this)">
+                <a href="javascript:;">职位管理</a>
+                <ul>
+                    <li><a href="lookDept.action">增加职位</a></li>
+                    <li><a href="getAllPost.action">查看职位</a></li>
+                    <li><a href="getAllPost.action">删除职位</a></li>
+                </ul>
+            </li>
+            <li onmouseover="display(this)" onmouseout="hide(this)">
+                <a href="javascript:;">员工管理</a>
+                <ul>
+                    <li><a href="getEmployee.action">查看员工</a></li>
+                    <li><a href="getEmployee.action">开除员工</a></li>
+                    <li><a href="getEmployee.action">员工调动</a></li>
+                    <li><a href="updateInfoEmp.action">员工信息修改</a></li>
+                </ul>
+            </li>
+            <li onmouseover="display(this)" onmouseout="hide(this)">
+                <a href="javascript:;">招聘管理</a>
+                <ul>
+                    <li><a href="addRecruit.jsp">增加招聘信息</a></li>
+                    <li><a href="showResume.action">查看已投简历</a></li>
+                    <li><a href="joinRecruit.action">查看已参加面试</a></li>
+                    <li><a href="getAllRecruit.action">查看招聘信息</a></li>
+                </ul>
+            </li>
+            <li onmouseover="display(this)" onmouseout="hide(this)">
+                <a href="javascript:;">培训信息</a>
+                <ul>
+                    <li><a href="getAllEmployeeAndAddTrain.action">增加培训</a></li>
+                    <li><a href="getAllTrain.action">查看培训</a></li>
+                </ul>
+            </li>
+            <li onmouseover="display(this)" onmouseout="hide(this)">
+                <a href="javascript:;">奖惩管理</a>
+                <ul>
+                    <li><a href="getAllEmployeeAndaddRwandph.action">增加奖惩</a></li>
+                    <li><a href="getAllRP.action">查看所有奖惩</a></li>
+                    <li><a href="getAllRP.action">修改奖惩</a></li>
+                    <li><a href="getAllRP.action">删除奖惩</a></li>
 
-<%--<select name="position" id="c">--%>
-    <%--<option>===请选择岗位===</option>--%>
-<%--</select>--%>
-<body>
-<s:select theme="simple" id="province" headerKey="" headerValue="请选择" list="provinceList" listKey="pid" listValue="pname" />
-<select id="city" name="city"><option>请选择</option></select>
-<select id="town" name="town"><option>请选择</option></select>
-</body>
+                </ul>
+            <li onmouseover="display(this)" onmouseout="hide(this)">
+                <a href="javascript:;">薪资管理</a>
+                <ul>
+                    <li><a href="getAllSAndE.action">发放薪资</a></li>
+                    <li><a href="getA">查看薪资</a></li>
+                    <li><a href="getDissent.action">查看工资异议</a></li>
+
+                </ul>
+            </li>
+            <li onmouseover="display(this)" onmouseout="hide(this)">
+                <a href="javascript:;">考勤管理</a>
+                <ul>
+                    <li><a href="getAllCheckon.action">查看考勤</a></li>
+                </ul>
+            </li>
+
+
+        </ul>
+    </div>
+
+</div>
+<table  align="center">
+    <tr align="center" >
+        <td bgcolor="yellow" align="center">
+            ${error}
+            ${Finform}
+            ${Tinform}
+            ${same}
+            ${RwS}
+        </td>
+</table>
+<table class=list  width="40%"  border="0" align="left"
+       cellpadding="0" cellspacing="0">
+    <tr>
+        <td height="30" align="center"  width="300">
+            部门名称:
+        </td>
+    </tr>
+    <c:forEach items="${sessionScope.deptList}" var="list1">
+        <tr>
+            <td>${list1.dname}</td>
+        </tr>
+    </c:forEach>
+</table>
+<table class=list width="40%"  border="0" align="right"
+       cellpadding="0" cellspacing="0">
+    <tr >
+        <td height="30" align="center"  width="300">
+            职位名称:
+        </td>
+    </tr>
+    <c:forEach items="${sessionScope.postList}" var="list2">
+        <tr>
+            <td height="30" align="center"  width="300">${list2.pname}</td>
+        </tr>
+    </c:forEach>
+</table>
+
+
 </body>
 </html>

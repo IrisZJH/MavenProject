@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -42,28 +43,28 @@ public class AdminHandler {
 //     *
 //     * @return
 //     */
-    @RequestMapping("queryDepartment")
-    public String queryDepartment() {
-        System.out.println("queryDepartment");
-        List<Department> departments = departmentService.queryAllDepartment();
-        System.out.println(departments);
-        return "SUCCESS";
-    }
+//    @RequestMapping("queryDepartment")
+//    public String queryDepartment() {
+//        System.out.println("queryDepartment");
+//        List<Department> departments = departmentService.queryAllDepartment();
+//        System.out.println(departments);
+//        return "SUCCESS";
+//    }
     /**
      * 查询对应部门的职位
      *
      * @return
      * @throws IOException
      */
-    @RequestMapping("queryPosition")
-    public void queryPosition(Integer Did,HttpServletResponse response) throws IOException {
-        List<Position> positions = positionService.queryPositionByDid(Did);
-        //list转换为json
-        JSONArray json = JSONArray.fromObject(positions);
-        response.getWriter().print(json.toString());
-        response.getWriter().flush();
-        response.getWriter().close();
-    }
+//    @RequestMapping("queryPosition")
+//    public void queryPosition(Integer Did,HttpServletResponse response) throws IOException {
+//        List<Position> positions = positionService.queryPositionByDid(Did);
+//        //list转换为json
+//        JSONArray json = JSONArray.fromObject(positions);
+//        response.getWriter().print(json.toString());
+//        response.getWriter().flush();
+//        response.getWriter().close();
+//    }
 //输入部门信息
     @RequestMapping("inputDepartment")
     public String inputDepartment(){
@@ -115,15 +116,20 @@ public class AdminHandler {
     }
 
     @RequestMapping("addRecruitment")
-    public String addRecruitment(Recruitment recruitment, Integer departmentId,Integer positionId,Model model){
-        Department department = departmentService.queryDepartmentById(departmentId);
-        Position position = positionService.queryPositionById(positionId);
-        recruitment.setDate(new Date(System.currentTimeMillis()));
-        recruitment.setDepartment(department);
+    public String addRecruitment(Recruitment recruitment, HttpSession session, Integer pid, Integer positionId, Model model){
+//        Department department = departmentService.queryDepartmentById(departmentId);
+//        Position position = positionService.queryPositionById(positionId);
+//        recruitment.setDate(new Date(System.currentTimeMillis()));
+//        recruitment.setDepartment(department);
+//        recruitment.setPosition(position);
+//        recruitmentService.insertRecruitment(recruitment);
+//        Visitor visitor = visitorService.findVisitorByName(recruitment.getaName());
+//        model.addAttribute("visitor",visitor);
+        List<Position> positionList=positionService.queryAllPosition();
+        session.setAttribute("positionList",positionList);
+        Position position =positionService.queryPositionById(pid);
         recruitment.setPosition(position);
         recruitmentService.insertRecruitment(recruitment);
-        Visitor visitor = visitorService.findVisitorByName(recruitment.getaName());
-        model.addAttribute("visitor",visitor);
         return "admin/adminpage";
     }
     @RequestMapping("queryAllRecruitment")

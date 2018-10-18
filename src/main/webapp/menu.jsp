@@ -9,7 +9,7 @@
     <script language="javascript" type="text/javascript" src="skin/js/frame/menu.js"></script>
     <base target="main" />
 </head>
-<body target="main">
+<body style="background-image:url(${request.pageContext.contextPath}/img/p2.jpg); background-size:100%,100%" target="main">
 <table width='99%' height="100%" border='0' cellspacing='0' cellpadding='0'>
     <tr>
         <td style='padding-left:3px;padding-top:8px' valign="top">

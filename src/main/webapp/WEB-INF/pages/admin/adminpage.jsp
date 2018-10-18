@@ -1,22 +1,20 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <html>
 <head>
-    <title>menu</title>
-    <link rel="stylesheet" href="skin/css/base.css" type="text/css" />
-    <link rel="stylesheet" href="skin/css/menu.css" type="text/css" />
+    <title>adminmenu</title>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <script language='javascript'>var curopenItem = '1';</script>
     <script language="javascript" type="text/javascript" src="skin/js/frame/menu.js"></script>
     <base target="main" />
 </head>
-<body target="main">
+<body style="background-image:url(${request.pageContext.contextPath}/img/p2.jpg); background-size:100%,100%" target="main">
 <table width='99%' height="100%" border='0' cellspacing='0' cellpadding='0'>
     <tr>
         <td style='padding-left:3px;padding-top:8px' valign="top">
             您好：管理员 ${requestScope.visitor.name}，您可以有以下操作！
             <!-- Item 1 Strat -->
             <dl class='bitem'>
-                <dt onClick='showHide("items1_1")'><b>招聘</b></dt>
+                <dt onClick='showHide("items1_1")'><b>招聘管理</b></dt>
                 <dd style='display:block' class='sitem' id='items1_1'>
                     <ul class='sitemu'>
                         <li>

@@ -2,19 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.zjh.ssmpro.dao.RecruitmentDao">
 	<insert id="insertRecruitment" parameterType="Recruitment">
-		insert into
-		recruitment(department_id,position_id,describe,date,aName)
-		values(#{department.id},#{position.id},#{describe},#{date},#{aName})
-	</insert>
+		insert into recruit(name,address,date,describe,pid)
+		values(#{name},#{address},#{date},#{describe},#{post.pid})
+</insert>
 	<delete id="deleteRecruitmentById" parameterType="int">
 		delete from recruitment where id=#{id}
 	</delete>
-	<select id="queryAllRecruitment"  resultType="Recruitment">
-		select
-		*
-		from
-		recruitment
 
+	<update id="updateRecruitmentById" parameterType="Recruitment">
+		update recruitment set state=#{state} where id=#{id}
+	</update>
+	<select id="getRecruitByReid" resultType="int" resultMap="recruitMap">
+		select recruit.*,post.* from recruit,post where recruit.pid=post.pid and reid=#{reid}
+	</select>
+	<select id="queryAllRecruitment"  resultType="Recruitment">
+		select recruitment.*,post.*
+		from recruit,post
+		where recruit.pid=post.pid
 	</select>
 </mapper>
 

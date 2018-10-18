@@ -6,33 +6,33 @@ import java.util.Date;
  * Created by 18221 on 2018/10/13.
  */
 public class Department {
-    private int id;
-    private String name;
+    private Integer did;
+    private String dname;
     private Date date;
     private Position position;
 
     public Department() {
     }
 
-    public Department(String name, Date date) {
-        this.name = name;
+    public Department(String dname, Date date) {
+        this.dname = dname;
         this.date = date;
     }
 
-    public int getId() {
-        return id;
+    public Integer getDid() {
+        return did;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDid(Integer did) {
+        this.did = did;
     }
 
-    public String getName() {
-        return name;
+    public String getDname() {
+        return dname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDname(String dname) {
+        this.dname = dname;
     }
 
     public Date getDate() {
@@ -54,8 +54,8 @@ public class Department {
     @Override
     public String toString() {
         return "Department{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "did=" + did +
+                ", dname='" + dname + '\'' +
                 ", date=" + date +
                 ", position=" + position +
                 '}';
